@@ -2,29 +2,31 @@ import React from "react";
 import "@/app/globals.css";
 import "./globals.css";
 import Image from "next/image";
+import Cards from "./Componet/Hedaer/CardsUiHomePage/Card";
+
 const page = () => {
   return (
     <div>
       <div className="container m-auto px-2 sm:px-10 ">
         <section className="text-center h-full mt-10 ">
-          <h1 className=" text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold  md:w-3/4 m-auto leading-snug font_Kufam">
+          <h1 className=" text-4xl sm:text-4xl md:text-5xl lg:text-6xl font-bold  md:w-3/4 m-auto leading-snug font_Kufam">
             بالعلم والمعرفة نبني
             <Image
               src={require("@/public/img1.png")}
               alt="ImageOne"
-              className="inline-block w-10 h-10  md:w-20 md:h-20"
+              className="inline-block w-14 h-14  md:w-20 md:h-20"
             />
             المستقبل
             <Image
               src={require("@/public/img2.png")}
               alt="ImageOne"
-              className="inline-block w-10 h-10  md:w-20 md:h-20"
+              className="inline-block w-14 h-14  md:w-20 md:h-20"
             />
             دروسنا طريقك نحو
             <Image
               src={require("@/public/book.png")}
               alt="ImageOne"
-              className="inline-block w-10 h-10 md:w-20 md:h-20"
+              className="inline-block w-14 h-14 md:w-20 md:h-20"
             />{" "}
             التميز
           </h1>
@@ -55,7 +57,7 @@ const page = () => {
                 {" "}
                 <div>
                   {" "}
-                  <h1 className="font-bold mt-2 md:mb-3">دروسنا المتكاملة</h1>
+                  <h1 className="font-bold mt-2 md:mb-3  ">دروسنا المتكاملة</h1>
                   <p>
                     مجموعة من الدروس المتنوعة التي تساعد الطلاب على فهم جميع
                     المواد بسهولة.
@@ -123,8 +125,31 @@ const page = () => {
         </div>
       </div>
 
-      <section className=" relative -top-20 h-screen   bg-Threecolor sm:px-10 ">
-        <div className="container m-auto"></div>
+      <section className=" relative  px-2 sm:px-10  pt-28 pb-7 -top-20    bg-Threecolor ">
+        <div className="container m-auto bg-primary div_shdow  p-2 md:p-10">
+        
+          <h1 className=" mb-6 flex mt-2 justify-center flex-row-reverse text-base font-bold sm:text-2xl lg:text-3xl ">
+            <span> - دروس</span>
+            <span className=" md:mx-2"> استكشف الدروس التي وفرناها لك </span>
+            <span className="">
+              {" "}
+              <Image
+                className=" w-8 h-8 sm:w-10 sm:h-10  lg:w-14 lg:h-14"
+                src={require("@/public/icons/IconsHomePage/stars1.png")}
+                alt="Star"
+              />
+            </span>
+          </h1>
+
+          <p className="md:w-4/5 text-center m-auto">
+            مجموعة واسعة من الدروس المميزة التي تم تصميمها بعناية لتناسب
+            احتياجاتك التعليمية وتساعدك على تحقيق أهدافك. ابدأ رحلتك الآن
+            واستمتع بالتعلم بطريقة مبتكرة!
+          </p>
+
+          {/* Card Corse  */}
+          <Cards />
+        </div>
       </section>
     </div>
   );
