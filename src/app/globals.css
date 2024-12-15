@@ -1,49 +1,55 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+/* font Cario  */
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Kufam:ital,wght@0,400..900;1,400..900&family=Lalezar&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+/* font-family: "Kufam", sans-serif; */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* @font-face {
-  font-family: "Nebula";
-  src: url("fonts/Nebula-Regular.otf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-} */
-
-/* font-family: "Open Sans", sans-serif;
-  font-family: "Montserrat", sans-serif;
-
-*/
-/* @font-face {
-  font-family: "Nebula";
-  src: url("/") format("woff");
-  font-weight: bold;
-  font-style: normal;
-} */
-/* style.css */
 body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* font-family: "Open Sans", sans-serif; */
-  font-family: "Montserrat", sans-serif;
   scroll-behavior: smooth;
+  font-family: "Cairo", sans-serif;
+  direction: ltr;
+}
+.font_Kufam {
+  font-family: "Kufam", sans-serif;
 }
 
-.h-001 {
-  height: 0.1;
-}
+/* The Best Color site  */
 
-::-webkit-scrollbar {
-  width: 5px;
+/* #FCFAEF   اخف  */
+
+/* #f7bc4b  احمق */
+
+/* #334457 */
+/* مناسب للخط الصفير  */
+
+/* #FFD9AD */
+
+/* #D0E5D9 */
+
+/* <svg aria-hidden="true" class="pointer-events_none pos_absolute inset_0 h_100% w_100% fill_gray.400/30 stk_gray.400/30 msk-i_linear-gradient(to_bottom_right,_white,_transparent,_transparent) pos_absolute top_0 left_0 w_full h_full msk-i_radial-gradient(400px,_white,_transparent)"><defs><pattern id=":S5:" width="50" height="50" patternUnits="userSpaceOnUse" x="-1" y="-1"><path d="M.5 50V.5H50" fill="none" stroke-dasharray="2 4"></path></pattern></defs><rect width="100%" height="100%" stroke-width="0" fill="url(#:S5:)"></rect></svg> */
+/* <svg width="77" height="81" viewBox="0 0 77 81" fill="none" xmlns="http://www.w3.org/2000/svg" class="flex-sh_0"><rect width="64" height="64" rx="32" fill="#05060F"></rect><path d="M26.4282 38.1649V29.5745H31.5319C33.1489 29.5745 34.3449 29.1534 35.1197 28.3112C35.8945 27.469 36.2819 26.4246 36.2819 25.1782C36.2819 23.9317 35.9113 22.9043 35.1702 22.0957C34.4628 21.2872 33.4184 20.883 32.0372 20.883C30.6897 20.883 29.6454 21.3041 28.9043 22.1463C28.1631 22.9885 27.7926 23.9991 27.7926 25.1782H19C19 22.8537 19.5222 20.7819 20.5665 18.9628C21.6108 17.1099 23.1268 15.6613 25.1144 14.617C27.1356 13.539 29.5443 13 32.3404 13C34.9681 13 37.2252 13.4885 39.1117 14.4654C41.0319 15.4087 42.4973 16.7394 43.508 18.4574C44.5523 20.1418 45.0745 22.1294 45.0745 24.4202V25.0266C45.0745 27.8227 44.2491 30.1472 42.5984 32C40.9477 33.8528 38.6064 35.1161 35.5745 35.7899L35.5239 38.1649H26.4282ZM25.8218 51V42.2074H36.1303V51H25.8218Z" fill="white"></path><rect x="54.4887" y="40.2078" width="22.4489" height="32.8956" rx="4.64176" transform="rotate(21.921 54.4887 40.2078)" fill="#F8DB46" stroke="#05060F" stroke-width="1.8567"></rect><path d="M62.2148 49.9142C62.7514 49.5551 63.4816 49.8398 63.6335 50.4674L65.4267 57.8776C65.6043 58.6114 64.8782 59.2391 64.1778 58.9572L56.1429 55.7238C55.4509 55.4453 55.3533 54.5058 55.9732 54.091L62.2148 49.9142Z" fill="#05060F" fill-opacity="0.88"></path><path d="M49.9572 63.6429L50.6777 61.8524L54.8712 58.7626L55.9092 60.204L52.4431 62.772L52.5014 63.0376L54.1498 63.7009L55.1105 61.3136L56.7399 61.9693L55.7792 64.3567L56.5276 64.6578L55.9634 66.0599L55.215 65.7587L54.7232 66.9808L53.0937 66.3251L53.5855 65.103L49.9572 63.6429ZM59.2065 69.0272C58.6317 68.7959 58.1614 68.5149 57.7955 68.1842C57.4384 67.8497 57.2066 67.4775 57.1 67.0677C56.9934 66.6579 57.0328 66.2224 57.2184 65.7614C57.3963 65.3193 57.6447 64.9936 57.9638 64.7844C58.2828 64.5753 58.6401 64.4806 59.0358 64.5003L59.0891 64.3677C58.8608 64.1511 58.7052 63.8903 58.6224 63.5855C58.5484 63.2768 58.589 62.9299 58.744 62.5447C58.9194 62.1089 59.1767 61.7978 59.5159 61.6114C59.8576 61.4187 60.2554 61.3329 60.7092 61.3541C61.1693 61.3778 61.652 61.4913 62.1572 61.6946C62.6688 61.9005 63.0956 62.153 63.4376 62.452C63.7795 62.7511 64.007 63.0885 64.12 63.4642C64.2355 63.8336 64.2056 64.2362 64.0303 64.672C63.8752 65.0572 63.6642 65.3355 63.3971 65.5069C63.1325 65.672 62.8397 65.7523 62.5186 65.7478L62.4652 65.8804C62.7706 66.1428 62.9659 66.4598 63.0511 66.8317C63.1362 67.2035 63.0899 67.6105 62.912 68.0526C62.6324 68.7473 62.1612 69.1705 61.4985 69.3221C60.8357 69.4737 60.0717 69.3754 59.2065 69.0272ZM61.0326 64.4893C61.3294 64.6088 61.5841 64.6416 61.7966 64.5876C62.0091 64.5337 62.1586 64.3994 62.245 64.1847C62.3339 63.9636 62.3192 63.7632 62.2007 63.5835C62.0822 63.4037 61.8746 63.2541 61.5778 63.1346C61.2809 63.0152 61.0263 62.9824 60.8138 63.0363C60.6038 63.0839 60.4556 63.2151 60.3692 63.4298C60.2828 63.6446 60.2975 63.845 60.4135 64.031C60.5357 64.2197 60.7421 64.3724 61.0326 64.4893ZM59.7859 67.5872C60.1207 67.7219 60.4246 67.7598 60.6978 67.701C60.9736 67.6358 61.1737 67.4485 61.2982 67.139C61.4202 66.8359 61.4031 66.5685 61.2468 66.3368C61.0994 66.1013 60.8552 65.915 60.5141 65.7777C60.1794 65.643 59.8741 65.6083 59.5984 65.6734C59.3315 65.7348 59.1371 65.9171 59.0151 66.2202C58.8906 66.5297 58.902 66.8022 59.0494 67.0376C59.2057 67.2693 59.4512 67.4525 59.7859 67.5872Z" fill="#05060F" fill-opacity="0.88"></path></svg> */
+
+.click_button {
+  text-transform: uppercase;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: 2px solid black;
+  box-shadow: 3px 3px black;
+  cursor: pointer;
 }
-::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 255, 255, 0.285);
+.div_shdow {
+  border-radius: 10px;
+  border: 2px solid black;
+  box-shadow: 3px 3px black;
 }
-::-webkit-scrollbar-track {
-  background-color: none;
-}
-.w-img{
-  width: 350px;
+.click_button:active {
+  box-shadow: none;
+  transform: translate(3px, 3px);
 }

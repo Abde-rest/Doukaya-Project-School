@@ -6,8 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "json-server": "json-server --watch db.json --port 3001"
+    "server": "json-server --watch db.json --port 3001",
+    "lint": "next lint"
+    
   },
   "dependencies": {
     "framer-motion": "^11.11.11",

@@ -1,8 +1,43 @@
+import Link from "next/link";
 import "./globals.css";
+import MenuBar from "./Componet/Hedaer/MenuBar";
+import Image from "next/image";
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="container px-2 sm:px-5  m-auto bg-black text-white ">
+      <body className="    bg-primary  ">
+        <header className="container mt-5 sm:px-10 px-4  m-auto flex justify-between items-center gap-2 ">
+          <Link
+            href={"/"}
+            className=" ml-4 md:ml-14 font-bold  text-3xl font_Kufam ">
+            دقية_
+          </Link>
+          <div className=" hidden sm:flex flex-1 justify-center gap-2">
+            {" "}
+            <Link
+              className="text-sm p-2   hover:bg-black/5 rounded-full w-fit transition-all"
+              href={"/blog"}>
+              مقالات
+            </Link>
+            <Link
+              className="text-sm p-2 hover:bg-black/5 rounded-full w-fit  transition-all"
+              href={"/About"}>
+              من نحن ؟
+            </Link>
+            <Link
+              className="text-sm p-2 hover:bg-black/5 rounded-full w-fit  transition-all"
+              href={"/"}>
+              الرئيسية
+            </Link>
+          </div>
+          <div className="hidden sm:flex   gap-3">
+            <button className="text-sm">التسجيل </button>
+            <button className=" py-2 px-4 text-sm rounded-md border-2 border-black">
+              تسجيل الدخول
+            </button>
+          </div>
+          <MenuBar />
+        </header>
         {children}
       </body>
     </html>
