@@ -3,11 +3,12 @@ import "@/app/globals.css";
 import "./globals.css";
 import Image from "next/image";
 import Cards from "./Componet/Hedaer/CardsUiHomePage/Card";
+import Categories from "./Componet/CategoriesUiHomePage/Categories";
 
 const page = () => {
   return (
     <div>
-      <div className="container m-auto px-2 sm:px-10 ">
+      <div className="container m-auto px-2 sm:px-6 ">
         <section className="text-center h-full mt-10 ">
           <h1 className=" text-4xl sm:text-4xl md:text-5xl lg:text-6xl font-bold  md:w-3/4 m-auto leading-snug font_Kufam">
             بالعلم والمعرفة نبني
@@ -125,10 +126,9 @@ const page = () => {
         </div>
       </div>
 
-      <section className=" relative  px-2 sm:px-10  pt-28 pb-7 -top-20    bg-Threecolor ">
+      <section className=" relative  px-2 sm:px-10  pt-28 pb-16 -top-20    bg-Threecolor ">
         <div className="container m-auto bg-primary div_shdow  p-2 md:p-10">
-        
-          <h1 className=" mb-6 flex mt-2 justify-center flex-row-reverse text-base font-bold sm:text-2xl lg:text-3xl ">
+          <h1 className=" mb-6 flex items-center mt-2 justify-center flex-row-reverse text-base font-bold sm:text-2xl lg:text-3xl ">
             <span> - دروس</span>
             <span className=" md:mx-2"> استكشف الدروس التي وفرناها لك </span>
             <span className="">
@@ -141,15 +141,19 @@ const page = () => {
             </span>
           </h1>
 
-          <p className="md:w-4/5 text-center m-auto">
+          <p className="md:w-4/5  text-center m-auto  ">
             مجموعة واسعة من الدروس المميزة التي تم تصميمها بعناية لتناسب
-            احتياجاتك التعليمية وتساعدك على تحقيق أهدافك. ابدأ رحلتك الآن
-            واستمتع بالتعلم بطريقة مبتكرة!
+            احتياجاتك التعليمية . استمتع بالتعلم بطريقة مبتكرة
           </p>
 
           {/* Card Corse  */}
           <Cards />
         </div>
+      </section>
+
+      {/* Categories Ui  */}
+      <section>
+        <Categories />
       </section>
     </div>
   );

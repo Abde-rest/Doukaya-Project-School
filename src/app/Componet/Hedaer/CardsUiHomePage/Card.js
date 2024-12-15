@@ -5,8 +5,8 @@ import React from "react";
 const Cards = () => {
   return (
     <div>
-      <div className="mt-10 flex items-center gap-4  flex-wrap justify-center  ">
-        <div className="max-w-sm  mb-3  rounded-lg  bg-primary div_shdow">
+      <div className="mt-10 grid   md:grid-cols-2  xl:grid-cols-3 items-center gap-3    justify-center  ">
+        <div className=" max-w-sm mb-3 m-auto rounded-lg  bg-primary div_shdow">
           <div className="p-2 pb-0">
             <div className="bg-black/5d  rounded-lg overflow-hidden shadow-black/25 shadow-md w-full h-48  ">
               <Image
@@ -60,7 +60,7 @@ const Cards = () => {
             </Link>
           </div>
         </div>
-        <div className="max-w-sm  mb-3  rounded-lg  bg-primary div_shdow">
+        <div className="max-w-sm  mb-3 m-auto rounded-lg  bg-primary div_shdow">
           <div className="p-2 pb-0">
             <div className="bg-black/5d  rounded-lg overflow-hidden shadow-black/25 shadow-md w-full h-48  ">
               <Image
@@ -114,7 +114,7 @@ const Cards = () => {
             </Link>
           </div>
         </div>
-        <div className="max-w-sm  mb-3  rounded-lg  bg-primary div_shdow">
+        <div className="max-w-sm  mb-3 m-auto rounded-lg  bg-primary div_shdow">
           <div className="p-2 pb-0">
             <div className="bg-black/5d  rounded-lg overflow-hidden shadow-black/25 shadow-md w-full h-48  ">
               <Image
@@ -169,7 +169,9 @@ const Cards = () => {
           </div>
         </div>
       </div>
-      <Link className="w-fit  m-auto mt-2 block relative " href={""}><button className="click_button  transition  ">المزيد </button> </Link>
+      <Link className="w-fit  m-auto mt-2 block relative mb-3 " href={""}>
+        <button className="click_button  transition  ">المزيد </button>{" "}
+      </Link>
     </div>
   );
 };

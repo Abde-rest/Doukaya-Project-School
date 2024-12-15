@@ -1,7 +1,7 @@
 import Link from "next/link";
 import "./globals.css";
 import MenuBar from "./Componet/Hedaer/MenuBar";
-import Image from "next/image";
+import Footer from "./Componet/FotterUi/Footer";
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
@@ -39,6 +39,7 @@ export default function RootLayout({ children }) {
           <MenuBar />
         </header>
         {children}
+        <Footer />
       </body>
     </html>
   );

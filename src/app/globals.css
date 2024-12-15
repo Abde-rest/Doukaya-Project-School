@@ -16,6 +16,10 @@ body {
   font-family: "Cairo", sans-serif;
   direction: ltr;
 }
+::selection {
+  color: black;
+  background-color: #f7bc4b;
+}
 .font_Kufam {
   font-family: "Kufam", sans-serif;
 }
@@ -53,12 +57,6 @@ body {
   box-shadow: none;
   transform: translate(3px, 3px);
 }
-
-
-
-
-
-
 
 .button_Effect:hover::before {
   animation: shine 1.5s ease-out infinite;
