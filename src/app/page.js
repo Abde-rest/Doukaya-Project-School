@@ -6,6 +6,8 @@ import Cards from "./Componet/Hedaer/CardsUiHomePage/Card";
 import Categories from "./Componet/CategoriesUiHomePage/Categories";
 
 const page = () => {
+  // color suscces 
+  // #5dd183
   return (
     <div>
       <div className="container m-auto px-2 sm:px-6 ">
