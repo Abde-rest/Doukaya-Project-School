@@ -80,12 +80,14 @@ const MenuBar = () => {
                 </Link>
               </div>
               <div className="flex flex-col mt-4  gap-3">
-                <button className="text-sm  py-2 px-4  rounded-md border-2 border-black">
+                <Link
+                  href={"/SingUp"}
+                  className="text-sm  text-center py-2 px-4  rounded-md border-2 border-black bg-primaryV2">
                   التسجيل
-                </button>
-                <button className="bg-primaryV2 py-2 px-4 text-sm rounded-md border-2 border-black">
+                </Link>
+                {/* <Link href={"/Login"} className="bg-primaryV2 text-center py-2 px-4 text-sm rounded-md border-2 border-black">
                   تسجيل الدخول
-                </button>
+                </Link> */}
               </div>
             </div>
             <div className="flex items-center justify-end">

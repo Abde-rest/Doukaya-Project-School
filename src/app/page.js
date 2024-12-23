@@ -5,9 +5,18 @@ import Image from "next/image";
 import Cards from "./Componet/Hedaer/CardsUiHomePage/Card";
 import Categories from "./Componet/CategoriesUiHomePage/Categories";
 
-const page = () => {
-  // color suscces 
+const page = async () => {
+  // color suscces
   // #5dd183
+
+  //  Form Validtion  with formik yun zod or ...  // its  not Ues the Vliation with formi k or any wher
+  // Ther is Mestakes in Login/SingUp  page Ther is Many Ui and state  Reused , So is low perfmormense
+
+  // Create Paage Corse
+  // redirect to page corse when login/singup susecc
+  // show message when login/singup susecc
+  // create store stat with zutend Have date use state
+
   return (
     <div>
       <div className="container m-auto px-2 sm:px-6 ">

@@ -15,11 +15,9 @@ body {
   scroll-behavior: smooth;
   font-family: "Cairo", sans-serif;
   direction: ltr;
+  user-select: none;
 }
-::selection {
-  color: black;
-  background-color: #f7bc4b;
-}
+
 .font_Kufam {
   font-family: "Kufam", sans-serif;
 }
@@ -90,4 +88,32 @@ body {
   to {
     left: 100%;
   }
+}
+
+/* spiiner  */
+
+.loader {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: inline-block;
+  border-top: 3px solid black;
+  border-right: 3px solid transparent;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.bg-backGround {
+  background-size: cover;
+
+  background-image: url("../public/BackRound/bg.avif");
 }

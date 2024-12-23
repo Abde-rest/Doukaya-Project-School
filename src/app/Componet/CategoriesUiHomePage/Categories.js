@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 
 const Categories = () => {
+  // Home page => Categoreies of Moudel course like : Math or Arabic its bfore the fotter
   return (
     <div className="container m-auto cursor-default relative  ">
       <h1 className=" bg-primary w-fit m-auto div_shdow py-3 px-2   flex relative  -top-28 justify-center flex-row-reverse text-base font-bold sm:text-2xl lg:text-3xl items-center">

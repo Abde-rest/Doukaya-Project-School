@@ -14,6 +14,7 @@ module.exports = {
         secondary: "#334457",
         Threecolor: "#FFD9AD",
         fourecolor: "#D0E5D9",
+        Suscces: "#5dd183",
       },
     },
   },
