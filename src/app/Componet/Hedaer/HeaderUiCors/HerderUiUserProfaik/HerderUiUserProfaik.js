@@ -5,12 +5,12 @@ import React from "react";
 const HerderUiUserProfail = async ({ className, wImage, hmage, noHover }) => {
   let session = await getServerSession(authoption);
   return (
-    <div className=" ">
+    <div className="">
       <div
         className={`flex py-3 cursor-pointer px-2 items-center ${className} gap-2 ${
           noHover ? "hover:bg-white/15" : null
         }`}>
-        <h2 className="text-white">{session.user.name}</h2>
+        <h2 className="text-white">{session.user.email.split("@")[0]}</h2>
         <Image
           className={` ${wImage} ${hmage}`}
           src={require("@/public/UserInterface/user.png")}

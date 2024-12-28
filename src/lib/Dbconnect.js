@@ -1,37 +1,26 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
-const MONGODB_URI = process.env.MONGODB_URI; // استبدل myDatabase باسم قاعدة البيانات الخاصة بك
+export default async function dbConnect() {
+  try {
+    if (mongoose.connection.readyState === 1) {
+      console.log("Your are Redy Connect to dataBaee");
 
-if (!MONGODB_URI) {
-  throw new Error("Please define the MONGODB_URI environment variable");
-}
-
-let cached = global.mongoose;
-
-if (!cached) {
-  cached = global.mongoose = { conn: null, promise: null };
-}
-
-async function dbConnect() {
-  if (cached.conn) {
-    return cached.conn;
+      return mongoose.connection.asPromise();
+    } else {
+      await mongoose.connect(process.env.MONGODB_URI, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        // serverSelectionTimeoutMS: 30000, // مهلة تصل إلى 30 ثانية
+      });
+    }
+    console.log("Connect database");
+  } catch (error) {
+    console.log("Not Connect database Ther is problem ");
+    console.log(error);
   }
 
-  if (!cached.promise) {
-    const options = {
-      bufferCommands: false,
-    };
+  // const Cat = mongoose.model('Cat', { name: String });
 
-    cached.promise = mongoose.connect(MONGODB_URI, options).then((mongoose) => {
-      console.log("MongoDB Connected!");
-      return mongoose;
-    });
-
-    console.log("Connect Datebase ");
-  }
-
-  cached.conn = await cached.promise;
-  return cached.conn;
+  // const kitty = new Cat({ name: 'Zildjian' });
+  // kitty.save().then(() => console.log('meow'));
 }
-
-export default dbConnect;

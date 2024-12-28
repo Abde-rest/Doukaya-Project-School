@@ -1,52 +1,58 @@
 import dbConnect from "@/lib/Dbconnect";
 import User from "@/Model/ModelUser/ModelUser";
+import bcrypt from "bcryptjs";
 
-// Problem Her =>  Condition check Name / Password
-// Problem Her =>  Validtion with Email
-// Problem Her => التشفير
+// ماهي الفكرة التي يطبقونها بعد التسجيل اي كيف يعطي الجلسة
 
+// Problem Her =>  How can Validtion Email ? Is Rialty ?
+// adpter MongoDb  => لتحزين الجلسة
 export async function POST(req) {
   // logic SingUp
+  let {
+    //  name,
+    email,
+    password,
+  } = await req.json();
 
-  let { username, password } = await req.json();
+  //  // التحقق من البيانات
+  if (!email || !password) {
+    return new Response("تاكد من ارسال البيانات رجاء ", { status: 400 });
+  }
 
   try {
     await dbConnect();
 
-    // check Name and Password
-    // Ther is Problem Her
-    const CheckName = await User.findOne({ username });
-    const CheckPassword = await User.findOne({ password });
-    // Ther is Two User True The condition
+    // Find Email
+    let checkUser = await User.findOne({ email: email });
 
-    // شرطي يعني انني اريد ان يكون الاسم وكلمى السر مختلفان
-    // واحضر لي  حسابين مختلفين يحققان الشرطين
-    // وهاذه المشكلة يجب ان تحل
-    if (CheckName && CheckPassword) {
-      // console.log(CheckName);
-      // console.log(CheckPassword);
-
-      // if you are need That  Mybe: => redirect to Login page
+    if (checkUser) {
+      console.log(checkUser);
       return new Response(JSON.stringify({ message: "الحساب موجود بالفعل " }), {
         status: 400,
       });
     }
-    // add User In dataBase
+    console.log("الحساب غير   موجود حاري الاضافة ");
 
+    // bcrypt The password
+    // التشفير احادي الاتجاه لايمكن فك تشفيره
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // add User In dataBase
     await User.create({
-      username: username,
-      password: password,
+      // name : username
+      email: email,
+      password: hashedPassword,
     });
 
     return new Response(
-      JSON.stringify({ message: "تم أنشاء الحساب بنجاج ", name: username }),
+      JSON.stringify({ message: "تم أنشاء الحساب بنجاج ", name: email }),
       { status: 201 }
     );
   } catch (error) {
     console.log(error);
 
     return new Response(
-      JSON.stringify({ message: "لم يتم أنشاء الحساب !! رجاء حاول مرة اخرى " }),
+      JSON.stringify({ message: "حدث خطاء غير متوقع !! رجاء حاول مرة اخرى " }),
       {
         status: 400,
       }

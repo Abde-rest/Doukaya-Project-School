@@ -6,6 +6,7 @@ import Image from "next/image";
 import { signIn } from "next-auth/react";
 import Spinner from "@/app/Componet/spinnerUi/spinner";
 
+// Probem Her Validation Email Is nit strong
 const SingUp = () => {
   let [isShow, setisShow] = useState(false);
   let [SpinnerisShow, setSpinnerisShow] = useState(false);
@@ -18,27 +19,34 @@ const SingUp = () => {
   });
 
   let [DataUserSingUp, setDataUserSingUp] = useState({
-    username: null,
+    email: null,
     password: null,
   });
 
-  const [errors, setErrors] = useState({ username: null, password: null });
-  // Name
-  const [SucessIconsNmae, setSucessIconsNmae] = useState(null);
+  // Eror Message validation
+  const [errors, setErrors] = useState({ email: null, password: null });
+  // Email
+  const [SucessIconsemail, setSucessIconsEmail] = useState();
   // password
   const [SucessIconspassword, setSucessIconspassword] = useState();
 
   // دالة التحقق من صحة البيانات
   const validate = () => {
-    const newErrors = { username: "", password: "" };
+    // setErrors({ email: null, password: null });
 
-    // التحقق من الاسم
-    if (!/^[\u0600-\u06FFa-zA-Z0-9\s]{5,}$/.test(DataUserSingUp.username)) {
-      newErrors.username = "الاسم يجب أن يكون بدون رموز، وبحد أدنى 5 أحرف.";
-      setSucessIconsNmae(false);
+    const newErrors = { email: null, password: null };
+    // التحقق من EmIAL
+
+    // validet email
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(DataUserSingUp.email)) {
+      newErrors.email = "صيغة البريد الألكتروني غير صحيحة ";
+      setSucessIconsEmail(false);
     } else {
-      setSucessIconsNmae(true);
+      setSucessIconsEmail(true);
     }
+
+    // validate password
     if (!/^.{8,}$/.test(DataUserSingUp.password)) {
       newErrors.password = "يجب أن تحتوي كلمة المرور على اكثر من  8  أحرف  .";
       setSucessIconspassword(false);
@@ -46,35 +54,38 @@ const SingUp = () => {
       setSucessIconspassword(true);
     }
     setErrors(newErrors);
-    return !newErrors.username && !newErrors.password;
+    return !newErrors.email && !newErrors.password;
   };
 
   // إرسال البيانات إلى الخادم
   const HandelSingUp = async (e) => {
     e.preventDefault();
-    setErrors("");
+    console.log(DataUserSingUp);
+
     if (!validate()) {
       return;
     }
     setSpinnerisShow(true);
+
     const res = await fetch("/api/SingUpUser", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(DataUserSingUp),
     });
-
     const result = await res.json();
+
     if (res.ok) {
       setMessageIfSingUp({
         message: result.message,
         statusMesage: true,
       });
       setSpinnerisShow(false);
+
       // Login The User after SingUp
       // Beacuse Get the session
-      // The Sesion Hav a Name The User and Token
+
       await signIn("credentials", {
-        username: DataUserSingUp.username,
+        email: DataUserSingUp.email,
         password: DataUserSingUp.password,
         // Her redirect
         redirect: true, //  إعادة التوجيه التلقائي
@@ -142,17 +153,17 @@ const SingUp = () => {
           <label
             for="website-admin"
             className="block mb-2 mt-4  text-sm font-medium text-black text-end">
-            الأسم الكامل
+            البريد الالكتروني
           </label>
           <div className="mb-3 relative  ">
-            {SucessIconsNmae === true && (
+            {SucessIconsemail === true && (
               <Image
                 className="w-5 h-5 absolute top-1/2  -translate-y-1/2 -left-7"
                 src={require("@/public/FormIcons/checked.png")}
                 alt="checked"
               />
             )}
-            {SucessIconsNmae === false && (
+            {SucessIconsemail === false && (
               <Image
                 className="w-5 h-5  top-1/2  -translate-y-5 absolute  -left-7"
                 src={require("@/public/FormIcons/delete.png")}
@@ -161,17 +172,18 @@ const SingUp = () => {
             )}
             <div className="flex  ">
               <input
-                type="text"
+                type="email"
                 dir="rtl"
                 onChange={(e) =>
                   setDataUserSingUp({
                     ...DataUserSingUp,
-                    username: e.target.value,
+                    email: e.target.value,
                   })
                 }
+                required
                 name="NameUser"
                 className="outline-none text-right rtl  placeholder:text-black/40 border-black border-2 border-r-0 rounded-l-md   block flex-1 min-w-0 w-full text-sm p-2.5 bg-primary"
-                placeholder="مثال : دقية بلخير "
+                placeholder="example@gmail.com"
               />
               <span className="inline-flex items-center px-3 text-sm  border-black border-2 border-l-0   rounded-r-lg  bg-primaryV2 ">
                 <svg
@@ -184,9 +196,9 @@ const SingUp = () => {
                 </svg>
               </span>
             </div>
-            {errors.username && (
-              <p className="text-red-500 text-xs mt-2 text-end">
-                {errors.username}
+            {errors.email && (
+              <p className="text-red-500 text-sm mt-2 text-end">
+                {errors.email}
               </p>
             )}
           </div>

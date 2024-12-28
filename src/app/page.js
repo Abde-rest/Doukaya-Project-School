@@ -6,6 +6,15 @@ import Cards from "./Componet/Hedaer/CardsUiHomePage/Card";
 import Categories from "./Componet/CategoriesUiHomePage/Categories";
 
 const page = async () => {
+  // افكار تطويرية في المتسقبل 
+  // اضافة جلسة في قاعدة البيانات 
+
+
+
+
+  // Response vs NextResponse: إذا كنت تستخدم Next.js 13 مع المجلد app, يفضل استخدام
+
+  
   // color suscces
   // #5dd183
 

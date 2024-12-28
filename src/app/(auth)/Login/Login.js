@@ -4,8 +4,12 @@ import { useState } from "react";
 import { signIn } from "next-auth/react";
 import Image from "next/image";
 import Spinner from "@/app/Componet/spinnerUi/spinner";
+import image from "@/public/UserInterface/user.png";
+import { useRouter } from "next/navigation";
 
+// Problem Her Logic Validtion Email and Password  Is Not Her
 const Login = () => {
+  let router = useRouter();
   // Eyes password
   let [isShow, setisShow] = useState(false);
   let [SpinnerisShow, setSpinnerisShow] = useState(false);
@@ -16,19 +20,21 @@ const Login = () => {
   });
   // login Fetch to api  router
   let [DataUserLogin, setDataUserLogin] = useState({
-    username: null,
-    password: null,
+    email: "",
+    password: "",
   });
   async function HandelLoginOrSingUp(e) {
     e.preventDefault();
     setSpinnerisShow(true);
 
     const result = await signIn("credentials", {
-      username: DataUserLogin.username,
+      email: DataUserLogin.email,
       password: DataUserLogin.password,
-      // Her redirect
-      redirect: true, //  إعادة التوجيه التلقائي
-      callbackUrl: "/Niveaux", // وجهة إعادة التوجيه
+      // لم اجد حلا
+      // redirect true تسبب مشكلة اذا ها هاك خطاء في التسجيل
+      // سوف ينتقل في حالى الخطاء ايضا
+      redirect: false, //  إعادة التوجيه التلقائي
+      // callbackUrl: "/Niveaux", // وجهة إعادة التوجيه
     });
 
     if (result.ok) {
@@ -38,13 +44,19 @@ const Login = () => {
         statusMesage: true,
       });
       setSpinnerisShow(false);
+      console.log(result);
+      router.push("/Niveaux");
     } else {
+      console.log(result);
+
       // Her Your Add The Message State
       setMessageIflogin({
         message: result.error,
+        // message: result.message,
         statusMesage: false,
       });
       setSpinnerisShow(false);
+      console.log(result);
     }
   }
   return (
@@ -55,7 +67,7 @@ const Login = () => {
           className="max-w-sm m-auto mx-6 mt-20  relative bg-white sm:m-auto pl-10 pr-10 pb-5    pt-5 sm:mt-10 div_shdow">
           <Image
             className="w-20 h-20 absolute -top-11 left-1/2 -translate-x-1/2"
-            src={require("@/public/UserInterface/user.png")}
+            src={image}
             alt="LoginImage"
             priority
           />
@@ -80,22 +92,22 @@ const Login = () => {
           <label
             for="website-admin"
             className="block mb-2 mt-4  text-sm font-medium text-black text-end">
-            الأسم الكامل
+            البريد الألكتروني
           </label>
           <div className="flex mb-3  ">
             <input
-              type="text"
+              type="email"
               dir="rtl"
               onChange={(e) =>
                 setDataUserLogin({
                   ...DataUserLogin,
-                  username: e.target.value,
+                  email: e.target.value,
                 })
               }
-              name="NameUser"
+              name="emailUser"
               required
               className="outline-none text-right rtl  placeholder:text-black/40 border-black border-2 border-r-0 rounded-l-md   block flex-1 min-w-0 w-full text-sm p-2.5 bg-primary"
-              placeholder="مثال : دقية بلخير "
+              placeholder="example@gmail.com"
             />
             <span className="inline-flex items-center px-3 text-sm  border-black border-2 border-l-0   rounded-r-lg  bg-primaryV2 ">
               <svg
