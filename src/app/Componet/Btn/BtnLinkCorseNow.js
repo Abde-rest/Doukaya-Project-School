@@ -1,11 +1,11 @@
 import Link from "next/link";
 import React from "react";
 
-const BtnLinkCorseNow = () => {
+const BtnLinkCorseNow = ({ hrefLink }) => {
   return (
     <Link
       // ml-auto
-      href={"#"}
+      href={`/Niveaux/${hrefLink}`}
       className="flex gap-1 overflow-hidden m-auto mb-3
        hover:bg-black/70 items-center w-fit px-3 py-2 text-sm font-medium  text-white bg-black rounded-lg relative  button_Effect    ">
       <svg

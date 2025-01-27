@@ -22,6 +22,19 @@ body {
   font-family: "Kufam", sans-serif;
 }
 
+/* scoll  */
+
+::-webkit-scrollbar{
+  width: 7px;
+}
+::-webkit-scrollbar-thumb{
+  background: black;
+
+
+}
+::-webkit-scrollbar-track{
+  background: whitesmoke;
+}
 /* The Best Color site  */
 
 /* #FCFAEF   اخف  */

@@ -13,6 +13,11 @@ const userSchema = new mongoose.Schema({
     required: true,
   },
   createdAt: { type: Date, default: Date.now },
+  role: {
+    type: String,
+    enum: ["user", "admin"], // القيم المسموح بها فقط
+    default: "user",
+  },
 });
 
 // export default mongoose.models.User || mongoose.model("User", userSchema);

@@ -3,7 +3,7 @@ import BtnLinkCorseNow from "@/app/Componet/Btn/BtnLinkCorseNow";
 import Image from "next/image";
 import React from "react";
 
-const BoxNevaux = ({ image, textNevaux }) => {
+const BoxNevaux = ({ image, textNevaux , hrefLink }) => {
   return (
     <div className="div_shdow text-center  w-full bg-white relative">
       <Image
@@ -13,7 +13,7 @@ const BoxNevaux = ({ image, textNevaux }) => {
       />
       <h1 className="mb-2">{textNevaux}</h1>
       <div className="m-auto">
-        <BtnLinkCorseNow />
+        <BtnLinkCorseNow hrefLink={hrefLink} />
       </div>
     </div>
   );

@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 export default async function dbConnect() {
   try {
     if (mongoose.connection.readyState === 1) {
-      console.log("Your are Redy Connect to dataBaee");
+      console.log("Your  are Redy Connect to dataBaee");
 
       return mongoose.connection.asPromise();
     } else {

@@ -7,22 +7,22 @@ const BoxsNevaux = () => {
       <BoxNevaux
         image={require("@/public/Svg_NumberNeavaux/level1.png")}
         textNevaux={"السنة الأولى متوسط"}
-        Link={"/"}
+        hrefLink={"1am"}
       />{" "}
       <BoxNevaux
         image={require("@/public/Svg_NumberNeavaux/level2.png")}
         textNevaux={"السنة الثانية متوسط"}
-        Link={"/"}
+        hrefLink={"2am"}
       />{" "}
       <BoxNevaux
         image={require("@/public/Svg_NumberNeavaux/level3.png")}
         textNevaux={"السنة الثالثة متوسط"}
-        Link={"/"}
+        hrefLink={"3am"}
       />{" "}
       <BoxNevaux
         image={require("@/public/Svg_NumberNeavaux/level4.png")}
         textNevaux={"السنة الرابعة متوسط"}
-        Link={"/"}
+        hrefLink={"4am"}
       />
     </div>
   );
