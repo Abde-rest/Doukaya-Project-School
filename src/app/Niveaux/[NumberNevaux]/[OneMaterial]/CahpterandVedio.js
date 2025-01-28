@@ -7,10 +7,6 @@ const CahpterandVedio = ({ res }) => {
   let [LinkVedioLessonWhenClick, SetLinkVedioLessonWhenClick] = useState(
     res.chapter_1[0].link
   );
-
-  let [currentLesson, setCurrentLesson] = useState(0);
-
-  // let [colorLessonClick, setcolorLessonClick] = useState(true);
   return (
     <div className="flex  flex-col justify-between gap-2 md:flex-row">
       {/* start vedio  */}

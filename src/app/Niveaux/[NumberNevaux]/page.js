@@ -6,6 +6,7 @@ const page = async ({ params }) => {
   // صفخة المواد
   let { NumberNevaux } = params;
   let Url = process.env.NEXT_PUBLIC_BASE_URL;
+
   let res = await fetch(`${Url}/api/GetMaterials`, {
     method: "POST",
     // اذا نزعتها سوف يجدث هاذا المشكل : Error: "[object Object]" is not valid JSON
@@ -15,10 +16,18 @@ const page = async ({ params }) => {
       NumberNevaux: `${NumberNevaux}`,
     }),
   });
-  
 
   if (!res.ok) {
-    console.log("Not Ok res oin page NumberNevaux  ");
+    return (
+      <div className="text-center ">
+        <Image
+          className="w-64 h-64  m-auto"
+          src={require("@/public/Problem/alert.png")}
+          alt="Problem image "
+        />
+        <h1>هناك مشكلة غير متوقعة </h1>
+      </div>
+    );
   }
   res = await res.json();
 

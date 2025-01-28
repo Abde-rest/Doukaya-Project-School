@@ -1,6 +1,7 @@
 import React, { Suspense } from "react";
 import Spinner from "@/app/Componet/spinnerUi/spinner";
 import CahpterandVedio from "./CahpterandVedio";
+import Image from "next/image";
 
 // اضافة زر العودة
 const page = async ({ params }) => {
@@ -23,24 +24,34 @@ const page = async ({ params }) => {
   });
 
   if (!res.ok) {
-    console.log("Not Ok res in Fetch page get chapter and Lesson  ");
+    return (
+      <div className="text-center ">
+        <Image
+          className="w-64 h-64  m-auto"
+          src={require("@/public/Problem/alert.png")}
+          alt="Problem image "
+        />
+        <h1>هناك مشكلة غير متوقعة </h1>
+      </div>
+    );
   }
   res = await res.json();
   console.log("The rsulte final is : ");
   console.log(res);
 
   return (
-    <div className="mt-8 px-3 m-auto  ">
-      <Suspense
-        fallback={
-          <div>
-            <Spinner className={` m-auto block`} />
-          </div>
-        }>
+    <div key={Math.random()} className="mt-8 px-3 m-auto  ">
+      <Suspense fallback={<Spinner className={`m-auto block`}></Spinner>}>
         {res ? (
           <CahpterandVedio res={res} />
         ) : (
-          <div className="text-center">هناك مشكلة في جلب الدروس </div>
+          <div className="text-center">
+            <Image
+              src={require("@/public/Problem/alert.png")}
+              alt="Problem image "
+            />
+            <h1>هناك مشكلة في جلب الدروس</h1>
+          </div>
         )}
       </Suspense>
     </div>
