@@ -5,13 +5,14 @@ import HeaderUi from "./Componet/Hedaer/header";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Logo from "./Componet/Hedaer/Componet/Logo";
-import HeaderUiCors from "./Componet/Hedaer/HeaderUiCors/HeaderUiCors";
+
 
 export default function RootLayout({ children }) {
   const pathname = usePathname();
 
   return (
     <html lang="en">
+
       <body className=" bg-primary  ">
         {pathname === "/" && <HeaderUi />}
 
@@ -46,7 +47,13 @@ export default function RootLayout({ children }) {
 
         {children}
 
-        {pathname === "/Login" || pathname === "/SingUp" ? null : <Footer />}
+        {pathname === "/Login" ||
+        pathname === "/SingUp" ||
+        pathname === "/Dashboard/statistique" ||
+        pathname === "/Dashboard/courses" ||
+        pathname === "/Dashboard/Users"  ? null : (
+          <Footer />
+        )}
       </body>
     </html>
   );

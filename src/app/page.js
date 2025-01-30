@@ -5,6 +5,7 @@ import Image from "next/image";
 import Cards from "./Componet/Hedaer/CardsUiHomePage/Card";
 import Categories from "./Componet/CategoriesUiHomePage/Categories";
 
+
 const page = async () => {
   // افكار تطويرية في المتسقبل 
   // اضافة جلسة في قاعدة البيانات 

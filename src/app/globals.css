@@ -24,15 +24,13 @@ body {
 
 /* scoll  */
 
-::-webkit-scrollbar{
+::-webkit-scrollbar {
   width: 7px;
 }
-::-webkit-scrollbar-thumb{
+::-webkit-scrollbar-thumb {
   background: black;
-
-
 }
-::-webkit-scrollbar-track{
+::-webkit-scrollbar-track {
   background: whitesmoke;
 }
 /* The Best Color site  */

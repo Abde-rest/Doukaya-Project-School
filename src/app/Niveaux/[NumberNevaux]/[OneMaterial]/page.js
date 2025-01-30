@@ -2,6 +2,7 @@ import React, { Suspense } from "react";
 import Spinner from "@/app/Componet/spinnerUi/spinner";
 import CahpterandVedio from "./CahpterandVedio";
 import Image from "next/image";
+import SkeltoneBox from "./Skelton/SkeltoneBox";
 
 // اضافة زر العودة
 const page = async ({ params }) => {
@@ -40,15 +41,15 @@ const page = async ({ params }) => {
   console.log(res);
 
   return (
-    <div key={Math.random()} className="mt-8 px-3 m-auto  ">
-      <Suspense fallback={<Spinner className={`m-auto block`}></Spinner>}>
+    <div className="mt-8 px-3 m-auto  ">
+      <Suspense fallback={<Spinner className={"m-auto"}></Spinner>}>
         {res ? (
           <CahpterandVedio res={res} />
         ) : (
           <div className="text-center">
             <Image
               src={require("@/public/Problem/alert.png")}
-              alt="Problem image "
+              alt="Problem Image"
             />
             <h1>هناك مشكلة في جلب الدروس</h1>
           </div>

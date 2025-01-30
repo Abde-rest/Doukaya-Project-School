@@ -8,7 +8,7 @@ const CahpterandVedio = ({ res }) => {
     res.chapter_1[0].link
   );
   return (
-    <div className="flex  flex-col justify-between gap-2 md:flex-row">
+    <div className="flex  flex-col justify-between gap-2 md:flex-row relative top-0 left-0 w-full">
       {/* start vedio  */}
       <div className="bg-white shadow-md rounded-b-lg  flex-1 h-fit md:sticky top-0 ">
         <VedioComponet LinkVedioLessonWhenClick={LinkVedioLessonWhenClick} />

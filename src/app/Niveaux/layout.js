@@ -23,9 +23,9 @@ export default function NevauxLayout({ children, params }) {
           <h1 className=" flex items-center flex-col w-full  text-center rounded-md shadow-black shadow  py-3 relative bg-white m-auto top-3  ">
             <i className="text-xs mb-1">قال رسول الله صلى الله عليه وسلم: </i>
             <span>
-              `&quot;`إن الله لا يقبض العلم انتزاعًا ينتزعه من العباد، ولكن يقبض
+              &quot;إن الله لا يقبض العلم انتزاعًا ينتزعه من العباد، ولكن يقبض
               العلم بقبض العلماء، حتى إذا لم يُبق عالمًا، اتخذ الناس رؤوسًا
-              جهالًا، فسُئلوا، فأفتوا بغير علم، فضلوا وأضلوا.`&quot;`
+              جهالًا، فسُئلوا، فأفتوا بغير علم، فضلوا وأضلوا.&quot;
             </span>
             <i className="text-xs mb-1">رواه الإمام البخاري </i>
           </h1>

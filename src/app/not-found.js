@@ -16,7 +16,7 @@ export default function NotFound() {
           <h2 className="mt-4 text-4xl"> الصفحة غير موجودة</h2>
           <Link
             href="/"
-            className="px-3 py-2 flex items-center gap-2 rounded-lg mt-4 hover:bg-primaryV2/80   bg-primaryV2  w-fit m-auto">
+            className="px-3 py-2 flex items-center gap-2 rounded-lg mt-4 mb-4 hover:bg-primaryV2/80   bg-primaryV2  w-fit m-auto">
             <svg
               width="20px"
               height="20px"
