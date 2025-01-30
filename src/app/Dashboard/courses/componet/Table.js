@@ -3,7 +3,7 @@ import { materialList, ChapterList, NevauxlList } from "./listFilter";
 
 const Table = () => {
   return (
-    <div dir="rtl" className="bg-white p-3 md:p-6 rounded-xl shadow-md mt-3 ">
+    <div dir="rtl" className="bg-white  p-3 md:p-6 rounded-xl shadow-md mt-3  ">
       {/* <!-- Header Section --> */}
 
       <h1 className="text-3xl font-semibold text-gray-900 text-start mb-4">
@@ -50,24 +50,19 @@ const Table = () => {
             </svg>
           </div>
           <div className="flex items-center gap-1 mt-3 mb-3">
-            {" "}
-            <h3 className="w-fit">
-              فلتر
-              <span>:</span>
-            </h3>
-            <select className="px-2 w-full py-1 cursor-pointer border border-gray-300 rounded-md">
+            <select className="px-2  w-full lg:w-fit py-1 cursor-pointer border border-gray-300 rounded-md">
               <option hidden>المادة</option>
               {materialList.map((materialOne, index) => {
                 return <option key={index}>{materialOne.nameAr}</option>;
               })}
             </select>
-            <select className="px-2 w-full py-1 cursor-pointer border border-gray-300 rounded-md">
+            <select className="px-2  w-full lg:w-fit py-1 cursor-pointer border border-gray-300 rounded-md">
               <option hidden>السنة الدراسية</option>
               {NevauxlList.map((NevauxOne, index) => {
                 return <option key={index}>{NevauxOne.nameAr}</option>;
               })}
             </select>
-            <select className="px-2 w-full py-1 cursor-pointer border border-gray-300 rounded-md">
+            <select className="px-2  w-full lg:w-fit py-1 cursor-pointer border border-gray-300 rounded-md">
               <option hidden> الفصل</option>
               {ChapterList.map((ChapterOne, index) => {
                 return <option key={index}>{ChapterOne.nameAr}</option>;
@@ -76,7 +71,7 @@ const Table = () => {
           </div>
         </div>
 
-        <button className="  w-full  lg:w-fit  bg-indigo-800 shadow-lg hover:bg-primaryV2 transition text-white px-3 py-2 rounded-md ">
+        <button className=" text-xs w-full  lg:w-fit  bg-indigo-800 shadow-lg hover:bg-primaryV2 transition text-white px-3 py-2 rounded-md ">
           <div className=" flex items-center gap-2 justify-center">
             {" "}
             <h1> بحث</h1>
@@ -112,8 +107,8 @@ const Table = () => {
       </div>
 
       {/* <!-- Table Section --> */}
-      <div className="max-h-96  overflow-y-auto   overflow-x-auto ">
-        <table className=" w-full  ">
+      <div className="max-h-96 overflow-y-auto">
+        <table className="w-full" style={{ minWidth: "600px" }}>
           {" "}
           <thead className=" text-gray-700  sticky top-0 ">
             <tr className="text-start w-full bg-slate-50">
@@ -405,9 +400,7 @@ const Table = () => {
                   </svg>
                 </button>
               </td>
-            </tr>            
-
-
+            </tr>
           </tbody>
         </table>
       </div>

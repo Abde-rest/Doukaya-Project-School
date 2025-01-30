@@ -25,10 +25,11 @@ body {
 /* scoll  */
 
 ::-webkit-scrollbar {
-  width: 7px;
+  width: 5px; /* عرض شريط التمرير */
+  height: 5px; /* ارتفاع شريط التمرير الأفقي */
 }
 ::-webkit-scrollbar-thumb {
-  background: black;
+  background: rgba(0, 0, 0, 0.342);
 }
 ::-webkit-scrollbar-track {
   background: whitesmoke;

@@ -1,13 +1,16 @@
 import React from "react";
 import BoxStatistique from "./Componet/BoxStatistique";
+import ToptextHedingpage from "../coponent/ToptextHedingpage";
 
 const page = () => {
   return (
     <div className=" w-full ">
-      <h1 className="font-bold text-xl "> لوحة التحكم / الأحصائيات</h1>
-      <p className="mt-2 text-black/80">جميع الأحصائيات الموجودة في الموقع </p>
+      <ToptextHedingpage
+        Heding={"الأحصائيات"}
+        paragrph={"جميع الأحصائيات الموجودة في الموقع "}
+      />
       {/* boxs  statique */}
-      <div className="mt-3 grid grid-cols-4 gap-2 ">
+      <div className="mt-3 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 grid lg:grid-cols-4 gap-2 ">
         <BoxStatistique nameBox={"المستخدمين"} NumberBox={8} bgBox={`#EFB036`}>
           <svg
             className="w-7 h-7 ms-3  "
