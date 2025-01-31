@@ -1,13 +1,20 @@
 import React from "react";
-import { materialList, ChapterList, NevauxlList } from "./listFilter";
 
-const Table = () => {
+const Table = ({
+  nameTable,
+  SelectFixedOne,
+  SelectFixedTwo,
+  ListFilterOne,
+  ListFilterTwo,
+  ListFilterThree,
+  theadListTopTable,
+}) => {
   return (
-    <div dir="rtl" className="bg-white  p-3 md:p-6 rounded-xl shadow-md mt-3  ">
+    <div dir="rtl" className="bg-white  p-2 md:p-6 rounded-xl shadow-md mt-3  ">
       {/* <!-- Header Section --> */}
 
       <h1 className="text-3xl font-semibold text-gray-900 text-start mb-4">
-        الدروس{" "}
+        {nameTable}
       </h1>
 
       {/* <!-- Search and Filter Section --> */}
@@ -17,7 +24,7 @@ const Table = () => {
           <div className="relative">
             <input
               type="text"
-              placeholder="البحث بسرعة"
+              placeholder="أبحث هنا  "
               className="p-2 border border-gray-300 rounded-md w-full pr-9"
             />
             {/* icons Serach  */}
@@ -51,27 +58,35 @@ const Table = () => {
           </div>
           <div className="flex items-center gap-1 mt-3 mb-3">
             <select className="px-2  w-full lg:w-fit py-1 cursor-pointer border border-gray-300 rounded-md">
-              <option hidden>المادة</option>
-              {materialList.map((materialOne, index) => {
-                return <option key={index}>{materialOne.nameAr}</option>;
+              <option hidden>{SelectFixedOne}</option>
+
+              {ListFilterOne.map((items, index) => {
+                return <option key={index}>{items.nameAr}</option>;
               })}
             </select>
-            <select className="px-2  w-full lg:w-fit py-1 cursor-pointer border border-gray-300 rounded-md">
-              <option hidden>السنة الدراسية</option>
-              {NevauxlList.map((NevauxOne, index) => {
-                return <option key={index}>{NevauxOne.nameAr}</option>;
-              })}
-            </select>
-            <select className="px-2  w-full lg:w-fit py-1 cursor-pointer border border-gray-300 rounded-md">
-              <option hidden> الفصل</option>
-              {ChapterList.map((ChapterOne, index) => {
-                return <option key={index}>{ChapterOne.nameAr}</option>;
-              })}
-            </select>
+
+            {nameTable === "الدروس" && (
+              <select className="px-2  w-full lg:w-fit py-1 cursor-pointer border border-gray-300 rounded-md">
+                <option hidden>{SelectFixedTwo}</option>
+                {ListFilterThree.map((items, index) => {
+                  return <option key={index}>{items.nameAr}</option>;
+                })}
+              </select>
+            )}
+
+            {nameTable === "الدروس" && (
+              <select className="px-2  w-full lg:w-fit py-1 cursor-pointer border border-gray-300 rounded-md">
+                <option hidden> الفصل</option>
+                {ListFilterTwo.map((items, index) => {
+                  return <option key={index}>{items.nameAr}</option>;
+                })}
+              </select>
+            )}
           </div>
         </div>
 
-        <button className=" text-xs w-full  lg:w-fit  bg-indigo-800 shadow-lg hover:bg-primaryV2 transition text-white px-3 py-2 rounded-md ">
+        {/* بنفس فكرة الور لفوق BuutonAdd */}
+        <button className=" text-xs w-full  click_button border-none  lg:w-fit  bg-indigo-800 shadow-lg hover:bg-primaryV2 transition text-white px-3 py-2 rounded-md ">
           <div className=" flex items-center gap-2 justify-center">
             {" "}
             <h1> بحث</h1>
@@ -112,12 +127,13 @@ const Table = () => {
           {" "}
           <thead className=" text-gray-700  sticky top-0 ">
             <tr className="text-start w-full bg-slate-50">
-              <th className="py-2 px-4  text-start">عنوان الدرس</th>
-              <th className="py-2 px-4 text-start">الفصل</th>
-              <th className="py-2 px-4 text-start">المادة</th>
-              <th className="py-2 px-4 text-start">السنة</th>
-              <th className="py-2 px-4 text-start">رفع في</th>
-              <th className="py-2 px-4 text-start">العملية</th>
+              {theadListTopTable.map((item, index) => {
+                return (
+                  <th key={index} className="py-2 px-4  text-start">
+                    {item}
+                  </th>
+                );
+              })}
             </tr>
           </thead>
           <tbody className="text-start">
@@ -128,7 +144,7 @@ const Table = () => {
               <td className="py-2 px-4">سنة اولى</td>
               <td className="py-2 px-4">2025/1/30</td>
               <td className="py-2 px-4">
-                <button className="hover:bg-slate-100 py-1 px-1 rounded transition ">
+                <button className="hover:bg-blue-200  group  py-1 px-1 rounded transition relative ">
                   <svg
                     width="20px"
                     height="20px"
@@ -146,6 +162,14 @@ const Table = () => {
                       </g>
                     </g>
                   </svg>
+                  <div className="group-hover:top-1/2 left-6 -translate-y-1/2 group-hover:opacity-100  opacity-0 transition-all duration-300   top-12  group-hover:block  absolute bg-slate-100 shadow-md rounded-md ">
+                    <span className="px-4 py-2 block hover:bg-blue-300">
+                      تعديل{" "}
+                    </span>
+                    <span className="px-4 py-2 block hover:bg-red-400">
+                      حذف
+                    </span>
+                  </div>
                 </button>
               </td>
             </tr>
@@ -156,7 +180,7 @@ const Table = () => {
               <td className="py-2 px-4">سنة اولى</td>
               <td className="py-2 px-4">2025/1/30</td>
               <td className="py-2 px-4">
-                <button className="hover:bg-slate-100 py-1 px-1 rounded transition ">
+                <button className="hover:bg-blue-200  group  py-1 px-1 rounded transition relative ">
                   <svg
                     width="20px"
                     height="20px"
@@ -174,6 +198,14 @@ const Table = () => {
                       </g>
                     </g>
                   </svg>
+                  <div className="group-hover:top-1/2 left-6 -translate-y-1/2 group-hover:opacity-100  opacity-0 transition-all duration-300   top-12  group-hover:block  absolute bg-slate-100 shadow-md rounded-md ">
+                    <span className="px-4 py-2 block hover:bg-blue-300">
+                      تعديل{" "}
+                    </span>
+                    <span className="px-4 py-2 block hover:bg-red-400">
+                      حذف
+                    </span>
+                  </div>
                 </button>
               </td>
             </tr>
@@ -184,7 +216,7 @@ const Table = () => {
               <td className="py-2 px-4">سنة اولى</td>
               <td className="py-2 px-4">2025/1/30</td>
               <td className="py-2 px-4">
-                <button className="hover:bg-slate-100 py-1 px-1 rounded transition ">
+                <button className="hover:bg-blue-200  group  py-1 px-1 rounded transition relative ">
                   <svg
                     width="20px"
                     height="20px"
@@ -202,6 +234,14 @@ const Table = () => {
                       </g>
                     </g>
                   </svg>
+                  <div className="group-hover:top-1/2 left-6 -translate-y-1/2 group-hover:opacity-100  opacity-0 transition-all duration-300   top-12  group-hover:block  absolute bg-slate-100 shadow-md rounded-md ">
+                    <span className="px-4 py-2 block hover:bg-blue-300">
+                      تعديل{" "}
+                    </span>
+                    <span className="px-4 py-2 block hover:bg-red-400">
+                      حذف
+                    </span>
+                  </div>
                 </button>
               </td>
             </tr>
@@ -212,7 +252,7 @@ const Table = () => {
               <td className="py-2 px-4">سنة اولى</td>
               <td className="py-2 px-4">2025/1/30</td>
               <td className="py-2 px-4">
-                <button className="hover:bg-slate-100 py-1 px-1 rounded transition ">
+                <button className="hover:bg-blue-200  group  py-1 px-1 rounded transition relative ">
                   <svg
                     width="20px"
                     height="20px"
@@ -230,6 +270,14 @@ const Table = () => {
                       </g>
                     </g>
                   </svg>
+                  <div className="group-hover:top-1/2 left-6 -translate-y-1/2 group-hover:opacity-100  opacity-0 transition-all duration-300   top-12  group-hover:block  absolute bg-slate-100 shadow-md rounded-md ">
+                    <span className="px-4 py-2 block hover:bg-blue-300">
+                      تعديل{" "}
+                    </span>
+                    <span className="px-4 py-2 block hover:bg-red-400">
+                      حذف
+                    </span>
+                  </div>
                 </button>
               </td>
             </tr>
@@ -240,7 +288,7 @@ const Table = () => {
               <td className="py-2 px-4">سنة اولى</td>
               <td className="py-2 px-4">2025/1/30</td>
               <td className="py-2 px-4">
-                <button className="hover:bg-slate-100 py-1 px-1 rounded transition ">
+                <button className="hover:bg-blue-200  group  py-1 px-1 rounded transition relative ">
                   <svg
                     width="20px"
                     height="20px"
@@ -258,6 +306,14 @@ const Table = () => {
                       </g>
                     </g>
                   </svg>
+                  <div className="group-hover:top-1/2 left-6 -translate-y-1/2 group-hover:opacity-100  opacity-0 transition-all duration-300   top-12  group-hover:block  absolute bg-slate-100 shadow-md rounded-md ">
+                    <span className="px-4 py-2 block hover:bg-blue-300">
+                      تعديل{" "}
+                    </span>
+                    <span className="px-4 py-2 block hover:bg-red-400">
+                      حذف
+                    </span>
+                  </div>
                 </button>
               </td>
             </tr>
@@ -268,7 +324,7 @@ const Table = () => {
               <td className="py-2 px-4">سنة اولى</td>
               <td className="py-2 px-4">2025/1/30</td>
               <td className="py-2 px-4">
-                <button className="hover:bg-slate-100 py-1 px-1 rounded transition ">
+                <button className="hover:bg-blue-200  group  py-1 px-1 rounded transition relative ">
                   <svg
                     width="20px"
                     height="20px"
@@ -286,118 +342,14 @@ const Table = () => {
                       </g>
                     </g>
                   </svg>
-                </button>
-              </td>
-            </tr>
-            <tr className="border-t hover:bg-slate-50 cursor-pointer">
-              <td className="py-2 px-4">الأعداد المركبة وشرح مفهومها </td>
-              <td className="py-2 px-4">1</td>
-              <td className="py-2 px-4">الرياضيات</td>
-              <td className="py-2 px-4">سنة اولى</td>
-              <td className="py-2 px-4">2025/1/30</td>
-              <td className="py-2 px-4">
-                <button className="hover:bg-slate-100 py-1 px-1 rounded transition ">
-                  <svg
-                    width="20px"
-                    height="20px"
-                    viewBox="0 0 24 24"
-                    fill="#000000"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <title />
-
-                    <g id="Complete">
-                      <g id="F-More">
-                        <path
-                          d="M8,12a2,2,0,1,1-2-2A2,2,0,0,1,8,12Zm10-2a2,2,0,1,0,2,2A2,2,0,0,0,18,10Zm-6,0a2,2,0,1,0,2,2A2,2,0,0,0,12,10Z"
-                          id="Horizontal"
-                        />
-                      </g>
-                    </g>
-                  </svg>
-                </button>
-              </td>
-            </tr>
-            <tr className="border-t hover:bg-slate-50 cursor-pointer">
-              <td className="py-2 px-4">الأعداد المركبة وشرح مفهومها </td>
-              <td className="py-2 px-4">1</td>
-              <td className="py-2 px-4">الرياضيات</td>
-              <td className="py-2 px-4">سنة اولى</td>
-              <td className="py-2 px-4">2025/1/30</td>
-              <td className="py-2 px-4">
-                <button className="hover:bg-slate-100 py-1 px-1 rounded transition ">
-                  <svg
-                    width="20px"
-                    height="20px"
-                    viewBox="0 0 24 24"
-                    fill="#000000"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <title />
-
-                    <g id="Complete">
-                      <g id="F-More">
-                        <path
-                          d="M8,12a2,2,0,1,1-2-2A2,2,0,0,1,8,12Zm10-2a2,2,0,1,0,2,2A2,2,0,0,0,18,10Zm-6,0a2,2,0,1,0,2,2A2,2,0,0,0,12,10Z"
-                          id="Horizontal"
-                        />
-                      </g>
-                    </g>
-                  </svg>
-                </button>
-              </td>
-            </tr>
-            <tr className="border-t hover:bg-slate-50 cursor-pointer">
-              <td className="py-2 px-4">الأعداد المركبة وشرح مفهومها </td>
-              <td className="py-2 px-4">1</td>
-              <td className="py-2 px-4">الرياضيات</td>
-              <td className="py-2 px-4">سنة اولى</td>
-              <td className="py-2 px-4">2025/1/30</td>
-              <td className="py-2 px-4">
-                <button className="hover:bg-slate-100 py-1 px-1 rounded transition ">
-                  <svg
-                    width="20px"
-                    height="20px"
-                    viewBox="0 0 24 24"
-                    fill="#000000"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <title />
-
-                    <g id="Complete">
-                      <g id="F-More">
-                        <path
-                          d="M8,12a2,2,0,1,1-2-2A2,2,0,0,1,8,12Zm10-2a2,2,0,1,0,2,2A2,2,0,0,0,18,10Zm-6,0a2,2,0,1,0,2,2A2,2,0,0,0,12,10Z"
-                          id="Horizontal"
-                        />
-                      </g>
-                    </g>
-                  </svg>
-                </button>
-              </td>
-            </tr>
-            <tr className="border-t hover:bg-slate-50 cursor-pointer">
-              <td className="py-2 px-4">الأعداد المركبة وشرح مفهومها </td>
-              <td className="py-2 px-4">1</td>
-              <td className="py-2 px-4">الرياضيات</td>
-              <td className="py-2 px-4">سنة اولى</td>
-              <td className="py-2 px-4">2025/1/30</td>
-              <td className="py-2 px-4">
-                <button className="hover:bg-slate-100 py-1 px-1 rounded transition ">
-                  <svg
-                    width="20px"
-                    height="20px"
-                    viewBox="0 0 24 24"
-                    fill="#000000"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <title />
-
-                    <g id="Complete">
-                      <g id="F-More">
-                        <path
-                          d="M8,12a2,2,0,1,1-2-2A2,2,0,0,1,8,12Zm10-2a2,2,0,1,0,2,2A2,2,0,0,0,18,10Zm-6,0a2,2,0,1,0,2,2A2,2,0,0,0,12,10Z"
-                          id="Horizontal"
-                        />
-                      </g>
-                    </g>
-                  </svg>
+                  <div className="group-hover:top-1/2 left-6 -translate-y-1/2 group-hover:opacity-100  opacity-0 transition-all duration-300   top-12  group-hover:block  absolute bg-slate-100 shadow-md rounded-md ">
+                    <span className="px-4 py-2 block hover:bg-blue-300">
+                      تعديل{" "}
+                    </span>
+                    <span className="px-4 py-2 block hover:bg-red-400">
+                      حذف
+                    </span>
+                  </div>
                 </button>
               </td>
             </tr>

@@ -1,3 +1,4 @@
+// page course || lessson
 export let materialList = [
   {
     nameAr: "فيزياء ",
@@ -42,10 +43,23 @@ export let ChapterList = [
   },
   {
     nameAr: "الفصل 2 ",
-    nameEn: "2am",
+    nameEn: "",
   },
   {
     nameAr: "الفصل 3 ",
-    nameEn: "3am",
+    nameEn: "",
+  },
+];
+
+// page  users
+
+export let RoleList = [
+  {
+    nameAr: "المسؤول",
+    nameEn: "admin",
+  },
+  {
+    nameAr: "مستخدم ",
+    nameEn: "user",
   },
 ];
