@@ -1,9 +1,9 @@
 "use client";
-
+import { motion } from "framer-motion";
 import StoreFormAdd from "@/store/StoreFormAdd";
 import React from "react";
 import FormAdd from "./FormAdd";
-// هاذه هيا الزر التي تضغط فوق الصفحة 
+// هاذه هيا الزر التي تضغط فوق الصفحة
 const BuutonAdd = ({ addText, nameFunc }) => {
   let { IsOpen, setIsOpen } = StoreFormAdd();
 
@@ -62,7 +62,15 @@ const BuutonAdd = ({ addText, nameFunc }) => {
           </g>
         </svg>
       </button>
-      {IsOpen && <FormAdd />}
+      {IsOpen && (
+        <motion.div
+          initial={{  scale:0.8 }}
+          animate={{ scale:1}}
+          transition={{ duration: 0.1 }}
+          className="backdrop-blur-sm fixed block top-0 left-0 z-40 w-full h-full">
+          <FormAdd nameFunc={nameFunc} />
+        </motion.div>
+      )}
     </div>
   );
 };
