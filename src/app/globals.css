@@ -13,7 +13,7 @@ body {
   padding: 0;
   box-sizing: border-box;
   scroll-behavior: smooth;
-  font-family: "Cairo", sans-serif;
+  font-family: "Cairo", "sans-serif";
   direction: ltr;
   user-select: none;
 }

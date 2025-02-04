@@ -2,19 +2,19 @@
 export let materialList = [
   {
     nameAr: "فيزياء ",
-    nameEn: "",
+    nameEn: "physics",
   },
   {
     nameAr: "رياضيات ",
-    nameEn: "",
+    nameEn: "mathematics",
   },
   {
     nameAr: "لغة عربية ",
-    nameEn: "",
+    nameEn: "Arabic",
   },
   {
     nameAr: "فرنسية ",
-    nameEn: "",
+    nameEn: "French",
   },
 ];
 
@@ -39,15 +39,15 @@ export let NevauxlList = [
 export let ChapterList = [
   {
     nameAr: "الفصل 1 ",
-    nameEn: "",
+    nameEn: "chapter_1",
   },
   {
     nameAr: "الفصل 2 ",
-    nameEn: "",
+    nameEn: "chapter_2",
   },
   {
     nameAr: "الفصل 3 ",
-    nameEn: "",
+    nameEn: "chapter_3",
   },
 ];
 

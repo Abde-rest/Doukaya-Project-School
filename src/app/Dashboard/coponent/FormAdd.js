@@ -1,15 +1,153 @@
+"use client";
+import { useState } from "react";
 import {
   materialList,
   NevauxlList,
   ChapterList,
 } from "../courses/componet/listFilter";
 import CloseIocnFormAdd from "./CloseIocnFormAdd";
+import { date } from "yup";
+
+// نصيحة : يجب فصل كل جزئية على حدا فمثلا في input title or user or chapter ...
+// بحيث عندما تتغير الحالة في احدهم لا اتأثر على الاخرين
+// ضع الحالة المتشركة في stroe => AllDataLesson
+// وعندها عندما يحدث rendring يجدث فقط في المكون الذي  تتغير البيانات فيه
 // الحقل الذي نريد الاضافة  فيه
 const FormAdd = ({ nameFunc }) => {
+  // All Date Lesson add
+  let [AllDataLesson, setDateLesson] = useState({
+    nameLesson: null,
+    YeraLesson: null,
+    ChapterLesson: null,
+    MaterialLesson: null,
+    DescriptionLesson: null,
+    VedioLesson: null,
+    ExerciceLesson: null,
+  });
+  console.log(AllDataLesson);
+  // let [PreviewURL, setPreviewURL] = useState();
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file && file.type.startsWith("video/")) {
+      // يتم إنشاء رابط مؤقت (object URL) للملف باستخدام الدالة URL.createObjectURL. هذا الرابط يُستخدم لاحقًا لعرض معاينة الفيديو قبل رفعه.
+      //  باش ديرو في vedio Tag للتاكد
+      // setPreviewURL(URL.createObjectURL(file));
+      setDateLesson({ ...AllDataLesson, VedioLesson: file });
+    } else {
+      // state Notification
+      alert("يرجى رفع ملف فيديو فقط!");
+      console.log(file);
+    }
+  };
+
+  async function SendDateLessonToDateBase() {
+    if (
+      AllDataLesson.nameLesson &&
+      AllDataLesson.ChapterLesson &&
+      AllDataLesson.MaterialLesson &&
+      AllDataLesson.VedioLesson &&
+      AllDataLesson.YeraLesson
+    ) {
+      // Uplode vedio to cloudinary
+
+      const formData = new FormData();
+      formData.append("file", AllDataLesson.VedioLesson);
+
+      formData.append("upload_preset", "UplodeVedio_Dokaya"); // استبدل بـ Upload Preset الفعلي
+
+      try {
+        const response = await fetch(
+          "https://api.cloudinary.com/v1_1/dkfhcfk3j/video/upload",
+          {
+            method: "POST",
+            body: formData,
+            // لا تحتاج إلى تحديد Content-Type
+            // إذا قمت بتحديد Content-Type: multipart/form-data بنفسك، فسيؤدي ذلك إلى كسر الطلب لأنه لن يحتوي على boundary المطلوب بواسطة Cloudinary لمعالجة البيانات المرسلة
+            // دعه فارغًا ليتم تعيينه تلقائيًا بواسطة المتصفح
+            // headers: {
+            //   "Content-Type": "multipart/form-data",
+            // },
+          }
+        );
+        const data = await response.json();
+
+        // req To Date Base ||  api router
+
+        try {
+          let res = await fetch(
+            `${process.env.NEXT_PUBLIC_BASE_URL}/api/AddLessonAndUplodeVedio`,
+            {
+              method: "POST",
+              body: JSON.stringify({
+                ...AllDataLesson,
+                VedioLesson: data.secure_url,
+              }),
+              // لا تحتاج إلى تحديد Content-Type
+              // إذا قمت بتحديد Content-Type: multipart/form-data بنفسك، فسيؤدي ذلك إلى كسر الطلب لأنه لن يحتوي على boundary المطلوب بواسطة Cloudinary لمعالجة البيانات المرسلة
+              // دعه فارغًا ليتم تعيينه تلقائيًا بواسطة المتصفح
+              // headers: {
+              //   "Content-Type": "multipart/form-data",
+              // },
+            }
+          );
+          const addLessone = await res.json();
+          console.log("Add lesson succ and dadate is Get  : ");
+          console.log(addLessone.dataLessonFomApi);
+        } catch (error) {
+          console.log("Ther is poblem form page add lesson fecth 2" + error);
+        }
+      } catch (error) {
+        console.error("حدث خطأ أثناء الرفع", error.message);
+      } finally {
+        // setUploading(false);
+      }
+
+      // Get link vedio add in state date lesson
+      // Set date to api route
+    } else {
+      alert("هناك بيانات مزالت غير موجودة  || او تحقق من  صحة  ا ملفات ");
+    }
+    // const formData = new FormData();
+    // formData.append("nameLesson", AllDataLes son.nameLesson);
+    // formData.append("YeraLesson", AllDataLesson.YeraLesson);
+    // formData.append("ChapterLesson", AllDataLesson.ChapterLesson);
+    // formData.append("MaterialLesson", AllDataLesson.MaterialLesson);
+    // formData.append("DescriptionLesson", AllDataLesson.DescriptionLesson);
+    // formData.append("VedioLesson", AllDataLesson.VedioLesson);
+    // // formData.append("ExerciceLesson" , AllDataLesson.ExerciceLesson)
+    // formData.append("VedioLesson", AllDataLesson.VedioLesson);
+    // if (
+    //   formData.get("nameLesson") &&
+    //   formData.get("YeraLesson") &&
+    //   formData.get("ChapterLesson") &&
+    //   formData.get("MaterialLesson") &&
+    //   formData.get("VedioLesson")
+    // ) {
+    //   let res = await fetch(
+    //     `${process.env.NEXT_PUBLIC_BASE_URL}/api/AddLessonAndUplodeVedio`,
+    //     {
+    //       method: "POST",
+    //       body: formData,
+    //       headers:{
+    //         "Content-Type": "multipart/form-data",
+    //       }
+    //     }
+    //   );
+    //   if (res.ok) {
+    //     console.log("Respnes form Front page add lessone");
+    //     // console.log(res.body);
+    //   } else {
+    //     console.log("Respnes form Front page add lessone Not Ok  ");
+    //   }
+    // } else {
+    //   alert("Date add lesson Not found ");
+    // }
+  }
+
   return (
     <div
       className={` flex items-center top-1/2 justify-center -translate-y-1/2  relative`}>
-      <div className=" w-full sm:w-fit px-6 py-4 bg-white rounded-lg shadow-lg h-4/5 md:h-fit overflow-y-auto ">
+      <div className=" w-full sm:w-fit px-6 py-4 bg-white rounded-lg shadow-lg  md:h-fit ">
         <div className="flex items-center justify-between">
           <CloseIocnFormAdd />
           <div className=" mb-6 text-end">
@@ -25,7 +163,6 @@ const FormAdd = ({ nameFunc }) => {
           {/* Uplode  */}
           {nameFunc === "addLessone" && (
             <div className=" w-full md:min-w-48 m-auto  flex items-center justify-center flex-col">
-              {" "}
               {/* Uplodae Vedio  */}
               <div className="w-full">
                 <label
@@ -34,7 +171,17 @@ const FormAdd = ({ nameFunc }) => {
                   أرفع الفيديو
                 </label>
                 <div className=" cursor-pointer border-2 flex items-center justify-center  m-auto  rounded-md border-gray-600  p-2 text-sm">
-                  {/* <input type="file" /> */}
+                  <input
+                    type="file"
+                    className="w-full h-full"
+                    onChange={
+                      (e) => handleFileChange(e)
+                      // setDateLesson({
+                      //   ...AllDataLesson,
+                      //   VedioLesson: e.target.files[0],
+                      // })
+                    }
+                  />
                   <svg
                     width="50px"
                     height="50px"
@@ -120,24 +267,41 @@ const FormAdd = ({ nameFunc }) => {
             {/* عنوان  */}
             <div className=" text-end mb-4">
               {nameFunc === "addLessone" ? (
-                <label
-                  for="Title"
-                  className="text-sm font-medium text-gray-600 mb-2 block">
-                  عنوان الدرس
-                </label>
+                <div>
+                  <label
+                    for="Title"
+                    className="text-sm font-medium text-gray-600 mb-2 block">
+                    عنوان الدرس
+                  </label>
+                  <input
+                    id="Title"
+                    className="w-full p-2 border border-gray-300 rounded-lg  mb-1"
+                    type="text"
+                    dir="rtl"
+                    onChange={(e) =>
+                      setDateLesson({
+                        ...AllDataLesson,
+                        nameLesson: e.target.value,
+                      })
+                    }
+                  />
+                </div>
               ) : (
-                <label
-                  for="Title"
-                  className="text-sm font-medium text-gray-600 mb-2 block">
-                  اسم المستخدم
-                </label>
+                <div>
+                  <label
+                    for="Title"
+                    className="text-sm font-medium text-gray-600 mb-2 block">
+                    اسم المستخدم
+                  </label>
+                  <input
+                    id="Title"
+                    className="w-full p-2 border border-gray-300 rounded-lg  mb-1"
+                    type="text"
+                    dir="rtl"
+                  />
+                </div>
               )}
-              <input
-                id="Title"
-                className="w-full p-2 border border-gray-300 rounded-lg  mb-1"
-                type="text"
-                dir="rtl"
-              />
+
               {nameFunc === "addLessone" ? null : (
                 <div>
                   {/* Info User Email and password  */}
@@ -180,12 +344,18 @@ const FormAdd = ({ nameFunc }) => {
                   <div class="flex-1 ml-2">
                     <label
                       for="material"
-                      class="text-sm font-medium text-gray-600  text-end ">
+                      className="text-sm font-medium text-gray-600  text-end ">
                       المادة
                     </label>
                     <select
                       id="material"
-                      class="w-full cursor-pointer p-2 border border-gray-300 rounded-lg  text-end ">
+                      onChange={(e) =>
+                        setDateLesson({
+                          ...AllDataLesson,
+                          MaterialLesson: e.target.value,
+                        })
+                      }
+                      className="w-full cursor-pointer p-2 border border-gray-300 rounded-lg  text-end ">
                       <option hidden>أختر مادة</option>
                       {materialList.map((item, index) => {
                         return (
@@ -208,7 +378,13 @@ const FormAdd = ({ nameFunc }) => {
                     </label>
                     <select
                       id="Chapter"
-                      class="w-full cursor-pointer p-2 border border-gray-300 rounded-lg  text-end ">
+                      onChange={(e) =>
+                        setDateLesson({
+                          ...AllDataLesson,
+                          ChapterLesson: e.target.value,
+                        })
+                      }
+                      className="w-full cursor-pointer p-2 border border-gray-300 rounded-lg  text-end ">
                       <option hidden>أختر فصل </option>
                       {ChapterList.map((item, index) => {
                         return (
@@ -226,12 +402,18 @@ const FormAdd = ({ nameFunc }) => {
                   <div class="flex-1 mr-2">
                     <label
                       for="Years"
-                      class="text-sm font-medium text-gray-600  text-end ">
+                      className="text-sm font-medium text-gray-600  text-end ">
                       السنة
                     </label>
                     <select
                       id="Years"
-                      class="w-full cursor-pointer p-2 border border-gray-300 rounded-lg  text-end ">
+                      onChange={(e) =>
+                        setDateLesson({
+                          ...AllDataLesson,
+                          YeraLesson: e.target.value,
+                        })
+                      }
+                      className="w-full cursor-pointer p-2 border border-gray-300 rounded-lg  text-end ">
                       <option hidden>أختر سنة</option>
                       {NevauxlList.map((item, index) => {
                         return (
@@ -248,6 +430,12 @@ const FormAdd = ({ nameFunc }) => {
                 </div>
                 <textarea
                   dir="rtl"
+                  onChange={(e) =>
+                    setDateLesson({
+                      ...AllDataLesson,
+                      DescriptionLesson: e.target.value,
+                    })
+                  }
                   className="w-full border-2 outline-none rounded-md border-gray-600  h-32 p-2 text-sm"
                   placeholder="اضافة وصف للدرس (غير مطلوب )"></textarea>
               </div>
@@ -289,8 +477,13 @@ const FormAdd = ({ nameFunc }) => {
           {/* <!-- Search Button --> */}
         </form>
         <button
+          // disabled={Btndisbled}
+          onClick={() => SendDateLessonToDateBase()}
           type="submit"
-          class="w-full py-2 bg-indigo-500 mt-2 hover:bg-indigo-800 text-white rounded-lg text-md font-medium">
+          className={`w-full py-2 
+       
+                bg-indigo-500 hover
+            mt-2  text-white rounded-lg text-md font-medium`}>
           اضافة
         </button>
       </div>

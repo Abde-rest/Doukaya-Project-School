@@ -17,8 +17,8 @@ const lessonSchema = new mongoose.Schema({
   },
   time: { type: Date, default: Date.now() },
   // رابط الدرس الموجود في cloud
-  linkVedio: {
-    type: String, // اسم الدرس
+  link: {
+    type: String,
     required: true,
   },
 });
