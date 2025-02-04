@@ -1,10 +1,11 @@
-// import { create } from "zustand";
+import { create } from "zustand";
 
-// export const useBearStore = create((set) => ({
-//   bears: 0,
-//   increasePopulation: () => set((state) => ({ bears: state.bears + 1 })),
-//   removeAllBears: () => set({ bears: 0 }),
-// }));
-// // لماذا هيا مهمة
-// // وماهي فائدة ادارى الحالة العالمية
-// // فيديو يشرح
+export const useNotifecation = create((set) => ({
+  IsSucOrLoseorNote: {
+    BgColor: null,
+    TextNotifeaction: null,
+    Show: false,
+  },
+  setIsSucOrLoseorNote: (value) =>
+    set(() => ({ IsSucOrLoseorNote: { ...value } })),
+}));

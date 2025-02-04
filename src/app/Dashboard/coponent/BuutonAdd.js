@@ -64,10 +64,10 @@ const BuutonAdd = ({ addText, nameFunc }) => {
       </button>
       {IsOpen && (
         <motion.div
-          initial={{  scale:0.8 }}
-          animate={{ scale:1}}
+          initial={{ scale: 0.8 }}
+          animate={{ scale: 1 }}
           transition={{ duration: 0.1 }}
-          className="backdrop-blur-sm fixed block top-0 left-0 z-40 w-full h-full">
+          className="bg-black/10 fixed block top-0 left-0 z-40 w-full h-full">
           <FormAdd nameFunc={nameFunc} />
         </motion.div>
       )}

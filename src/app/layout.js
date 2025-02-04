@@ -5,15 +5,26 @@ import HeaderUi from "./Componet/Hedaer/header";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Logo from "./Componet/Hedaer/Componet/Logo";
-
-
+import Notifection from "./Componet/Notifection/Notifection";
+import { useNotifecation } from "@/store/storeNotifaction";
+import { motion } from "framer-motion";
 export default function RootLayout({ children }) {
   const pathname = usePathname();
 
+  let { IsSucOrLoseorNote } = useNotifecation();
   return (
     <html lang="en">
-
-      <body className=" bg-primary  ">
+      <body className="bg-primary">
+        {IsSucOrLoseorNote.Show && (
+          <motion.div
+            initial={{ opacity: 0, top: -70 }}
+            animate={{ opacity: 1, top: 20 }}
+            exit={{ opacity: 0, top: -70 }}
+            transition={{ duration: 0.5 }}
+            className="z-[9999] fixed  p-2 rounded  left-1/2 -translate-x-1/2 duration-100 w-fit text-center">
+            <Notifection IsSucOrLoseorNote={IsSucOrLoseorNote} />
+          </motion.div>
+        )}
         {pathname === "/" && <HeaderUi />}
 
         {pathname === "/Login" || pathname === "/SingUp" ? (
@@ -51,7 +62,7 @@ export default function RootLayout({ children }) {
         pathname === "/SingUp" ||
         pathname === "/Dashboard/statistique" ||
         pathname === "/Dashboard/courses" ||
-        pathname === "/Dashboard/Users"  ? null : (
+        pathname === "/Dashboard/Users" ? null : (
           <Footer />
         )}
       </body>
