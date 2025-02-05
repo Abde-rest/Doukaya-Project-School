@@ -1,5 +1,10 @@
-import React from "react";
+"use client";
+import { Suspense, useEffect } from "react";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+import FetchDataTable from "./FetchDataTable";
 
+// export const revalidate = 15;
 const Table = ({
   nameTable,
   SelectFixedOne,
@@ -9,8 +14,11 @@ const Table = ({
   ListFilterThree,
   theadListTopTable,
 }) => {
+  //  كل واحدة لها Table خاصة  بها 
   return (
-    <div dir="rtl" className="bg-white  p-2 md:p-6 rounded-xl shadow-md mt-3  ">
+    <div
+      dir="rtl"
+      className="bg-white  p-2 md:p-6 rounded-xl shadow-md mt-3   ">
       {/* <!-- Header Section --> */}
 
       <h1 className="text-3xl font-semibold text-gray-900 text-start mb-4">
@@ -122,10 +130,12 @@ const Table = ({
       </div>
 
       {/* <!-- Table Section --> */}
-      <div className="min-h-10 overflow-y-auto">
+      <div className="overflow-y-auto max-h-64">
+        {/* <Skeleton count={3} className="w-full h-12" /> */}
+        {/* <Suspense fallback={<Skeleton count={3} className="w-full h-12" />}> */}
         <table className="w-full" style={{ minWidth: "600px" }}>
           {" "}
-          <thead className=" text-gray-700  sticky top-0 ">
+          <thead className=" text-gray-700  sticky top-0 z-40 ">
             <tr className="text-start w-full bg-slate-50">
               {theadListTopTable.map((item, index) => {
                 return (
@@ -136,81 +146,72 @@ const Table = ({
               })}
             </tr>
           </thead>
-          <tbody className="text-start">
-            <tr className="border-t hover:bg-slate-50 cursor-pointer">
-              <td className="py-2 px-4">الأعداد المركبة وشرح مفهومها </td>
-              <td className="py-2 px-4">1</td>
-              <td className="py-2 px-4">الرياضيات</td>
-              <td className="py-2 px-4">سنة اولى</td>
-              <td className="py-2 px-4">2025/1/30</td>
-              <td className="py-2 px-4">
-                <button className="hover:bg-blue-200  group  py-1 px-1 rounded transition relative ">
-                  <svg
-                    width="20px"
-                    height="20px"
-                    viewBox="0 0 24 24"
-                    fill="#000000"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <title />
-
-                    <g id="Complete">
-                      <g id="F-More">
-                        <path
-                          d="M8,12a2,2,0,1,1-2-2A2,2,0,0,1,8,12Zm10-2a2,2,0,1,0,2,2A2,2,0,0,0,18,10Zm-6,0a2,2,0,1,0,2,2A2,2,0,0,0,12,10Z"
-                          id="Horizontal"
-                        />
-                      </g>
-                    </g>
-                  </svg>
-                  <div className="group-hover:top-1/2 left-6 -translate-y-1/2 group-hover:opacity-100  opacity-0 transition-all duration-300   top-12  group-hover:block  absolute bg-slate-100 shadow-md rounded-md ">
-                    <span className="px-4 py-2 block hover:bg-blue-300">
-                      تعديل{" "}
-                    </span>
-                    <span className="px-4 py-2 block hover:bg-red-400">
-                      حذف
-                    </span>
-                  </div>
-                </button>
-              </td>
-            </tr>
-            <tr className="border-t hover:bg-slate-50 cursor-pointer">
-              <td className="py-2 px-4">الأعداد المركبة وشرح مفهومها </td>
-              <td className="py-2 px-4">1</td>
-              <td className="py-2 px-4">الرياضيات</td>
-              <td className="py-2 px-4">سنة اولى</td>
-              <td className="py-2 px-4">2025/1/30</td>
-              <td className="py-2 px-4">
-                <button className="hover:bg-blue-200  group  py-1 px-1 rounded transition relative ">
-                  <svg
-                    width="20px"
-                    height="20px"
-                    viewBox="0 0 24 24"
-                    fill="#000000"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <title />
-
-                    <g id="Complete">
-                      <g id="F-More">
-                        <path
-                          d="M8,12a2,2,0,1,1-2-2A2,2,0,0,1,8,12Zm10-2a2,2,0,1,0,2,2A2,2,0,0,0,18,10Zm-6,0a2,2,0,1,0,2,2A2,2,0,0,0,12,10Z"
-                          id="Horizontal"
-                        />
-                      </g>
-                    </g>
-                  </svg>
-                  <div className="group-hover:top-1/2 left-6 -translate-y-1/2 group-hover:opacity-100  opacity-0 transition-all duration-300   top-12  group-hover:block  absolute bg-slate-100 shadow-md rounded-md ">
-                    <span className="px-4 py-2 block hover:bg-blue-300">
-                      تعديل{" "}
-                    </span>
-                    <span className="px-4 py-2 block hover:bg-red-400">
-                      حذف
-                    </span>
-                  </div>
-                </button>
-              </td>
-            </tr>
+          <tbody className="text-start h-fit">
+            {/* <Suspense fallback={<Skeleton count={3} className="w-full h-12" />}> */}
+              {nameTable === "الدروس" && data.length > 0 ? (
+                data.map((items, index) => {
+                  return Object.keys(items) // استخراج جميع المفاتيح
+                    .filter((key) => key.startsWith("chapter_")) // تصفية الفصول فقط
+                    .flatMap((chapterKey, chapterIndex) => {
+                      return items[chapterKey].map((item, itemIndex) => (
+                        <tr
+                          key={`${index}-${chapterIndex}-${itemIndex}`}
+                          className="border-t hover:bg-slate-50 cursor-pointer">
+                          <td className="py-2 px-4">
+                            {item.title.length > 30
+                              ? item.title.slice(0, 30) + "..."
+                              : item.title}
+                          </td>
+                          <td className="py-2 px-4">
+                            {chapterKey.replace("chapter_", "")}
+                          </td>
+                          <td className="py-2 px-4">{items.name}</td>
+                          <td className="py-2 px-4">{items.level_id}</td>
+                          <td className="py-2 px-4">
+                            {item.time.slice(0, 10)}
+                          </td>
+                          <td className="py-2 px-4">
+                            <button className="hover:bg-blue-200 group py-1 px-1 rounded transition relative">
+                              <svg
+                                width="20px"
+                                height="20px"
+                                viewBox="0 0 24 24"
+                                fill="#000000"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <g id="Complete">
+                                  <g id="F-More">
+                                    <path
+                                      d="M8,12a2,2,0,1,1-2-2A2,2,0,0,1,8,12Zm10-2a2,2,0,1,0,2,2A2,2,0,0,0,18,10Zm-6,0a2,2,0,1,0,2,2A2,2,0,0,0,12,10Z"
+                                      id="Horizontal"
+                                    />
+                                  </g>
+                                </g>
+                              </svg>
+                              <div className="group-hover:top-1/2 z-50 left-6 -translate-y-1/2 group-hover:opacity-100 opacity-0 transition-all duration-300 top-12 group-hover:block absolute bg-slate-100 shadow-md rounded-md">
+                                <span className="px-4 py-2 block hover:bg-blue-300">
+                                  تعديل
+                                </span>
+                                <span className="px-4 py-2 block hover:bg-red-400">
+                                  حذف
+                                </span>
+                              </div>
+                            </button>
+                          </td>
+                        </tr>
+                      ));
+                    });
+                })
+              ) : nameTable === "المستخدمين" && data.length > 0 ? null : (
+                <tr>
+                  <td colSpan="6" className="text-center py-4">
+                    data مازالت لم تاتي
+                  </td>
+                </tr>
+              )}
+            {/* </Suspense> */}
           </tbody>
         </table>
+        {/* </Suspense> */}
       </div>
     </div>
   );

@@ -1,3 +1,5 @@
+// Validtion in Form User add
+
 "use client";
 import { useState } from "react";
 import {
@@ -14,11 +16,11 @@ import { useNotifecation } from "@/store/storeNotifaction";
 // ضع الحالة المتشركة في stroe => AllDataLesson
 // وعندها عندما يحدث rendring يجدث فقط في المكون الذي  تتغير البيانات فيه
 // الحقل الذي نريد الاضافة  فيه
+
 const FormAdd = ({ nameFunc }) => {
+  // State Open\Close Forme
   let { setIsOpen } = StoreFormAdd();
   let { IsSucOrLoseorNote, setIsSucOrLoseorNote } = useNotifecation();
-  console.log({ ...IsSucOrLoseorNote });
-
   // All Date Lesson add
   let [AllDataLesson, setDateLesson] = useState({
     nameLesson: null,
@@ -29,8 +31,18 @@ const FormAdd = ({ nameFunc }) => {
     VedioLesson: null,
     ExerciceLesson: null,
   });
+  // Loding When click btn add
   let [Loding, SetLoding] = useState(false);
-  console.log(AllDataLesson);
+  // All Date User add
+  let [AllDataUser, setAllDataUser] = useState({
+    // من بعد
+    // nameUser: null,
+    EmailUser: null,
+    Passwrod: null,
+    Rols: "user",
+  });
+
+  console.log(AllDataUser);
   // let [PreviewURL, setPreviewURL] = useState();
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -193,17 +205,81 @@ const FormAdd = ({ nameFunc }) => {
     // }
   }
 
+  // Validtion
+  async function SendDateUserToDateBase() {
+    if (
+      // AllDataUser.nameUser &&
+      AllDataUser.EmailUser &&
+      AllDataUser.Passwrod &&
+      AllDataUser.Rols
+    ) {
+      try {
+        SetLoding(true);
+        let res = await fetch(
+          `${process.env.NEXT_PUBLIC_BASE_URL}/api/SingUpUser`,
+          {
+            method: "POST",
+            body: JSON.stringify({
+              email: AllDataUser.EmailUser,
+              password: AllDataUser.Passwrod,
+              Rols: AllDataUser.Rols,
+            }),
+          }
+        );
+
+        let data = await res.json();
+        if (!res.ok) {
+          setIsSucOrLoseorNote({
+            BgColor: "bg-red-400",
+            TextNotifeaction: `${data.message}`,
+            Show: true,
+          });
+          return;
+        } else {
+          setIsSucOrLoseorNote({
+            BgColor: "bg-green-400",
+            TextNotifeaction: `${data.message}`,
+            Show: true,
+          });
+        }
+      } catch (e) {
+        console.log(e);
+        setIsSucOrLoseorNote({
+          BgColor: "bg-red-400",
+          TextNotifeaction: `حدث خطاء ما  رجاء تحقق من الانترنت او حاول مرة اخرى `,
+          Show: true,
+        });
+      } finally {
+        setIsOpen(false);
+        SetLoding(false);
+      }
+    } else {
+      setIsSucOrLoseorNote({
+        // #9ae077 green
+        // #FFC46A yellow
+        // #FF7F7D red
+        BgColor: "bg-red-400",
+        TextNotifeaction: "يرجى ملء بيانات المستخدم   بعناية",
+        Show: true,
+      });
+    }
+  }
+
   return (
     <div
-      className={` flex items-center top-1/2 justify-center -translate-y-1/2  relative`}>
-      <div className=" min-w-52 min-h-52 flex justify-center items-center sm:w-fit px-6 py-4 bg-white rounded-lg shadow-lg  md:h-fit ">
+      className={` flex items-center top-1/2 justify-center -translate-y-1/2  relative w-full z-50 `}>
+      <div
+        className={` w-full sm:w-fit px-6 py-4 bg-white rounded-lg shadow-lg  `}>
         {Loding ? (
-          <div className="text-center ">
-            <div>
-              <div class="loader"></div>
-              <p className="text-center m-auto">
-                جارى رفع الدرس الى قاعدة البيانات
-              </p>
+          // اذا صار مشكلة في loding  هنا  الشمكلة
+          <div className="flex items-center justify-center">
+            <div className="text-center">
+              <div>
+                <div className="loader"></div>
+                <p className="text-center m-auto">
+                  جارى أضافة البيانات الى قاعدة البيانات
+                </p>
+              </div>
             </div>
           </div>
         ) : (
@@ -360,6 +436,12 @@ const FormAdd = ({ nameFunc }) => {
                         className="w-full p-2 border border-gray-300 rounded-lg  mb-1"
                         type="text"
                         dir="rtl"
+                        onChange={(e) =>
+                          setAllDataUser({
+                            ...AllDataUser,
+                            nameUser: e.target.value,
+                          })
+                        }
                       />
                     </div>
                   )}
@@ -379,6 +461,12 @@ const FormAdd = ({ nameFunc }) => {
                           className="w-full p-2 border border-gray-300 rounded-lg mb-1"
                           type="email"
                           dir="rtl"
+                          onChange={(e) =>
+                            setAllDataUser({
+                              ...AllDataUser,
+                              EmailUser: e.target.value,
+                            })
+                          }
                         />
                       </div>
                       <div>
@@ -393,6 +481,12 @@ const FormAdd = ({ nameFunc }) => {
                           className="w-full p-2 border border-gray-300 rounded-lg mb-1"
                           type="password"
                           dir="rtl"
+                          onChange={(e) =>
+                            setAllDataUser({
+                              ...AllDataUser,
+                              Passwrod: e.target.value,
+                            })
+                          }
                         />
                       </div>
                     </div>
@@ -519,8 +613,13 @@ const FormAdd = ({ nameFunc }) => {
                         <input
                           type="radio"
                           value={"user"}
-                          // checked={selectedRole === "admin"}
-                          // onChange={handleChange}
+                          checked={AllDataUser.Rols === "user"}
+                          onChange={(e) =>
+                            setAllDataUser({
+                              ...AllDataUser,
+                              Rols: e.target.value,
+                            })
+                          }
                         />
                       </div>
                       <div className="flex items-center gap-1 justify-end">
@@ -530,7 +629,17 @@ const FormAdd = ({ nameFunc }) => {
                           className="text-sm font-medium text-gray-600 mb-2 block">
                           مسؤول
                         </label>
-                        <input type="radio" value={"admin"} />
+                        <input
+                          type="radio"
+                          value={"admin"}
+                          checked={AllDataUser.Rols === "admin"}
+                          onChange={(e) =>
+                            setAllDataUser({
+                              ...AllDataUser,
+                              Rols: e.target.value,
+                            })
+                          }
+                        />
                       </div>
                     </div>
                   </div>
@@ -540,7 +649,13 @@ const FormAdd = ({ nameFunc }) => {
             </form>
             <button
               // disabled={Btndisbled}
-              onClick={() => SendDateLessonToDateBase()}
+              onClick={() => {
+                if (nameFunc === "addLessone") {
+                  SendDateLessonToDateBase();
+                } else {
+                  SendDateUserToDateBase();
+                }
+              }}
               type="submit"
               className={`w-full py-2 
        

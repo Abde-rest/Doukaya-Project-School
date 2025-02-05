@@ -12,11 +12,20 @@ export async function POST(req) {
     //  name,
     email,
     password,
+    Rols,
   } = await req.json();
+  console.log(email);
+  console.log(password);
+  console.log(Rols);
 
   //  // التحقق من البيانات
   if (!email || !password) {
-    return new Response("تاكد من ارسال البيانات رجاء ", { status: 400 });
+    return new Response(
+      JSON.stringify({ message: "تأكد من ارسال البيانات رجاء " }),
+      {
+        status: 400,
+      }
+    );
   }
 
   try {
@@ -26,13 +35,13 @@ export async function POST(req) {
     let checkUser = await User.findOne({ email: email });
 
     if (checkUser) {
+      console.log("Ther is Redy Users : ");
+
       console.log(checkUser);
       return new Response(JSON.stringify({ message: "الحساب موجود بالفعل " }), {
         status: 400,
       });
     }
-    console.log("الحساب غير   موجود حاري الاضافة ");
-
     // bcrypt The password
     // التشفير احادي الاتجاه لايمكن فك تشفيره
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -42,12 +51,12 @@ export async function POST(req) {
       // name : username
       email: email,
       password: hashedPassword,
+      role: Rols,
     });
 
-    return new Response(
-      JSON.stringify({ message: "تم أنشاء الحساب بنجاج ", name: email }),
-      { status: 201 }
-    );
+    return new Response(JSON.stringify({ message: "تم أنشاء الحساب بنجاج " }), {
+      status: 201,
+    });
   } catch (error) {
     console.log(error);
 

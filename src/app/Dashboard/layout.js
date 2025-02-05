@@ -8,7 +8,7 @@ export default function DahLayout({ children }) {
   return (
     <div className="bg-primary">
       <div className="container  m-auto flex justify-end text-end ">
-        <div className=" pl-2 md:pl-4  md:pr-4 mt-6 flex-1 overflow-x-auto">
+        <div className=" pl-2 md:pl-4  md:pr-4 mt-6 w-full overflow-x-auto ">
           {children}
         </div>
         <Sidbar />
