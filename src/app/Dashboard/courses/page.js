@@ -5,15 +5,22 @@ import { materialList, ChapterList, NevauxlList } from "./componet/listFilter";
 import { theadListCourse } from "./componet/ListTableTop";
 
 const page = async () => {
-  // Get data For List Table Lesson 
+  // Get data For List Table Lesson
   let data = [];
-  let res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/GetAllChapterAndLesson`,
-    {
-      cache: "no-store",
+  try {
+    let res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/GetAllChapterAndLesson`,
+      {
+        cache: "no-store",
+      }
+    );
+    if (!res.ok) {
+      throw new Error("فشل جلب البيانات");
     }
-  );
-  data = await res.json();
+    data = await res.json();
+  } catch (error) {
+    return <div>فشل جلب البيانات جدث خطاء ما </div>;
+  }
 
   return (
     <div>
