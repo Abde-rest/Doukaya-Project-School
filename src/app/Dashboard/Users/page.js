@@ -6,7 +6,7 @@ import { theadListUsers } from "../courses/componet/ListTableTop";
 // هل ياترا استخدم Table  في مكون واجد واعيد استخدامه في صفحتين
 // الجدول فيه بيانات يحضرها و filter معين
 /// كي اعامل معهم خاصى معا filter
-// export const revalidate = 15;
+export const revalidate = 15;
 // بعد كل 15 ثانية نقوم بتحديث الكاش  الئي يخزن بيانات المستخدمين
 const page = async () => {
   let data = [];
@@ -14,7 +14,7 @@ const page = async () => {
     let res = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_URL}/api/GetAllUsers`,
       {
-        cache: "no-store",
+        // cache: "no-store",
       }
     );
     if (!res.ok) {
