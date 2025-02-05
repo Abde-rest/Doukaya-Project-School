@@ -13,7 +13,7 @@ export async function GET(req) {
     });
   } catch (error) {
     return new Response(
-      { message: "The is Pr GetAllChapterAndLesson" + error },
+      JSON.stringify({ message: "The is Pr GetAllChapterAndLesson" + error }),
       { status: 400 }
     );
   }

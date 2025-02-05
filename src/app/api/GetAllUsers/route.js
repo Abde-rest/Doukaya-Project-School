@@ -10,7 +10,7 @@ export async function GET(req) {
     });
   } catch (error) {
     return new Response(
-      { message: "هناك مشكلة في جلب البيانات " + error },
+      JSON.stringify({ message: "هناك مشكلة في جلب البيانات " + error }),
       { status: 400 }
     );
   }
