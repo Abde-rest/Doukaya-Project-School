@@ -10,9 +10,9 @@ const page = async () => {
   try {
     let res = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_URL}/api/GetAllChapterAndLesson`,
-      {
-        cache: "no-store",
-      }
+
+      // { headers: { "Cache-Control": "no-cache, no-store, must-revalidate" } },
+      { cache: "no-store" }
     );
     if (!res.ok) {
       throw new Error("فشل جلب البيانات");
