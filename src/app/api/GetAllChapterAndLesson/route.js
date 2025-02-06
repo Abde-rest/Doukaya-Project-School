@@ -1,6 +1,7 @@
 import dbConnect from "@/lib/Dbconnect";
 import ChapterAndlesson from "@/Model/Chapter&Lesson/ModelChapter&Lesson";
 // Get all chpater and Lesson
+export const dynamic = "force-dynamic";
 export async function GET(req) {
   try {
     await dbConnect();

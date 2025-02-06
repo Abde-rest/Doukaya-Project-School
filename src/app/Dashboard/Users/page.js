@@ -17,7 +17,7 @@ const page = async () => {
       `${process.env.NEXT_PUBLIC_BASE_URL}/api/GetAllUsers`,
       {
         cache: "no-store",
-        // headers: { "Cache-Control": "no-cache, no-store, must-revalidate" },
+        headers: { "Cache-Control": "no-cache, no-store, must-revalidate" },
       }
       // وهاذا خطاء لاوم object 1
       // ,
