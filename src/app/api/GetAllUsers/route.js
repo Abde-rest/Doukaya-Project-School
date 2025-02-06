@@ -1,6 +1,6 @@
 import dbConnect from "@/lib/Dbconnect";
 import User from "@/Model/ModelUser/ModelUser";
-// export const dynamic = "force-dynamic"; // 🚀 تعطيل الكاش نهائيًا
+export const dynamic = "force-dynamic"; // 🚀 تعطيل الكاش نهائيًا
 export async function GET(req) {
   try {
     await dbConnect();
