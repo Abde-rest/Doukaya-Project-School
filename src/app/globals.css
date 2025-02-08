@@ -26,14 +26,12 @@ body {
 
 ::-webkit-scrollbar {
   width: 5px; /* عرض شريط التمرير */
-  height: 5px; /* ارتفاع شريط التمرير الأفقي */
+  height: 10px; /* ارتفاع شريط التمرير الأفقي */
 }
 ::-webkit-scrollbar-thumb {
   background: rgba(0, 0, 0, 0.342);
 }
-::-webkit-scrollbar-track {
-  background: whitesmoke;
-}
+
 /* The Best Color site  */
 
 /* #FCFAEF   اخف  */
@@ -126,8 +124,6 @@ body {
 
 .bg-backGround {
   background-size: cover;
-
-  background-image: url("../public/BackRound/bg.avif");
 }
 
 .loader {
@@ -147,5 +143,51 @@ body {
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+.bg-bg-svg {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23F6B03D' fill-opacity='0.1'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.glass {
+  background: rgba(252, 250, 239, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(247, 188, 75, 0.2);
+}
+
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(51, 68, 87, 0.1);
+}
+.gradient-border {
+  background: linear-gradient(
+    90deg,
+    rgb(var(--primary)),
+    rgb(var(--primary) / 0.6)
+  );
+  padding: 1px;
+  border-radius: 1rem;
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, rgb(var(--text)), rgb(var(--primary)));
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
   }
 }

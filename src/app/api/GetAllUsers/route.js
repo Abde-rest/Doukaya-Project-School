@@ -9,7 +9,6 @@ export async function GET(req) {
     let AllDataUers = await User.find({});
     return new Response(JSON.stringify(AllDataUers), {
       headers: {
-        "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0",
         "Content-Type": "application/json",
       },
       status: 200,

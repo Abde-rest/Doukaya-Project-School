@@ -1,50 +1,26 @@
 "use client";
-import Logo from "@/app/Componet/Hedaer/Componet/Logo";
+
 import Image from "next/image";
 // import HerderUiUserProfail from "@/app/Componet/Hedaer/HeaderUiCors/HerderUiUserProfaik/HerderUiUserProfaik";
 import Link from "next/link";
-import React, { Suspense, useState } from "react";
-
-const MenuBar = () => {
-  let [isOpen, setisopen] = useState(false);
-  let [isOpenNevauxBar, setisOpenNevauxBar] = useState(false);
-
+const MenuBar = ({
+  isOpen,
+  setisopen,
+  isOpenNevauxBar,
+  setisOpenNevauxBar,
+}) => {
   return (
     <>
-      {/* menu icon  */}
-      <div
-        onClick={() => {
-          setisopen(!isOpen);
-        }}
-        className="  w-7 h-7 mr-5  overflow-hidden  cursor-pointer   ">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M16 10C16.9319 10 17.3978 10 17.7654 9.84776C18.2554 9.64477 18.6448 9.25542 18.8478 8.76537C19 8.39782 19 7.93188 19 7C19 6.06812 19 5.60218 18.8478 5.23463C18.6448 4.74458 18.2554 4.35523 17.7654 4.15224C17.3978 4 16.9319 4 16 4L8 4C7.06812 4 6.60218 4 6.23463 4.15224C5.74458 4.35523 5.35523 4.74458 5.15224 5.23463C5 5.60218 5 6.06812 5 7C5 7.93188 5 8.39782 5.15224 8.76537C5.35523 9.25542 5.74458 9.64477 6.23463 9.84776C6.60218 10 7.06812 10 8 10L16 10Z"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-          <path
-            d="M18 20C18.9319 20 19.3978 20 19.7654 19.8478C20.2554 19.6448 20.6448 19.2554 20.8478 18.7654C21 18.3978 21 17.9319 21 17C21 16.0681 21 15.6022 20.8478 15.2346C20.6448 14.7446 20.2554 14.3552 19.7654 14.1522C19.3978 14 18.9319 14 18 14H6C5.06812 14 4.60218 14 4.23463 14.1522C3.74458 14.3552 3.35523 14.7446 3.15224 15.2346C3 15.6022 3 16.0681 3 17C3 17.9319 3 18.3978 3.15224 18.7654C3.35523 19.2554 3.74458 19.6448 4.23463 19.8478C4.60218 20 5.06812 20 6 20L18 20Z"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
-      </div>
-
       {/* BacGround Black When Open menu  */}
       <div
-        className={`fixed top-0 transition-all duration-300 left-0 ${
-          isOpen ? "w-full h-full bg-black/55 " : "opacity-0  "
-        }z-50 `}>
+        className={`fixed top-0 transition-all  duration-300 left-0 ${
+          isOpen ? "opacity-1 z-50" : "hidden"
+        } w-full h-full bg-black/55  `}>
         {/* Menu bar  */}
         <div
-          className={`  fixed  p-5   transition-all ease-linear top-0 ${
-            isOpen ? "right-0 " : "-right-96"
-          } bg-black h-full md:w-80   `}>
+          className={` p-5   transition-all ease-linear top-0 ml-auto relative bg-black h-full md:w-80 ${
+            isOpen ? "right-0" : "-right-96"
+          }  `}>
           {/* Top Menu Close */}
           <button
             className="flex items-center justify-between "
@@ -64,21 +40,7 @@ const MenuBar = () => {
             </div>
           </button>
 
-          {/* Profail  */}
-          {/* <div className="mt-2 ">
-            {" "}
-            <Suspense fallback={<div>Loding.. .</div>}>
-              <HerderUiUserProfail
-                className={"flex-col-reverse"}
-                wImage={"w-16"}
-                hImage={"h-16"}
-                noHover={false}
-              />
-            </Suspense>
-          </div> */}
-
-          {/* Ul Menu  */}
-          <ul className="">
+          <ul>
             <li>
               <Link
                 href="#"
@@ -145,7 +107,9 @@ const MenuBar = () => {
                   className={` duration-200 border-r  border-primaryV2${
                     isOpenNevauxBar ? "  h-40" : " h-0  "
                   }`}>
-                  <Link className="flex items-center gap-2 justify-end pr-6" href={"/"}>
+                  <Link
+                    className="flex items-center gap-2 justify-end pr-6"
+                    href={"/"}>
                     <li className=" py-2  text-white/70 hover:text-white duration-100 rounded-lg">
                       السنة الأولى{" "}
                     </li>
@@ -155,7 +119,9 @@ const MenuBar = () => {
                       alt="Icon"
                     />
                   </Link>
-                  <Link className="flex items-center gap-2 justify-end pr-6" href={"/"}>
+                  <Link
+                    className="flex items-center gap-2 justify-end pr-6"
+                    href={"/"}>
                     <li className=" py-2  text-white/70 hover:text-white duration-100 rounded-lg">
                       السنة الثانية{" "}
                     </li>
@@ -165,7 +131,9 @@ const MenuBar = () => {
                       alt="Icon"
                     />
                   </Link>
-                  <Link className="flex items-center gap-2 justify-end pr-6" href={"/"}>
+                  <Link
+                    className="flex items-center gap-2 justify-end pr-6"
+                    href={"/"}>
                     <li className=" py-2  text-white/70 hover:text-white duration-100 rounded-lg">
                       السنة الثالثة{" "}
                     </li>
@@ -175,7 +143,9 @@ const MenuBar = () => {
                       alt="Icon"
                     />
                   </Link>
-                  <Link className="flex items-center gap-2 justify-end pr-6" href={"/"}>
+                  <Link
+                    className="flex items-center gap-2 justify-end pr-6"
+                    href={"/"}>
                     <li className=" py-2  text-white/70 hover:text-white duration-100 rounded-lg">
                       السنة الرابعة{" "}
                     </li>

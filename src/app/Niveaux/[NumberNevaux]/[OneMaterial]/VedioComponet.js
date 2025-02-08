@@ -11,7 +11,7 @@ const VedioComponet = ({ LinkVedioLessonWhenClick }) => {
   // }
 
   return (
-    <div className="bg-black w-full  aspect-video">
+    <div className="bg-black w-full ">
       <Video
         // لكي يتم تحديث المكون لانه من طبيعة vdio يقهوم المتصفح بحفضه لذالك نضع
         // نضع Key  لاخبر reatc ان العنصر ليس نفسه ووجب تحديثه

@@ -1,13 +1,12 @@
 import Image from "next/image";
 import BoxMaterials from "../Componet/BoxMaterials/BoxMaterials";
 import Link from "next/link";
-
+import MotionDev from "@/app/Componet/motion";
 const page = async ({ params }) => {
   // صفخة المواد
   let { NumberNevaux } = params;
-  let Url = process.env.NEXT_PUBLIC_BASE_URL;
-
-  let res = await fetch(`${Url}/api/GetMaterials`, {
+  let res = [];
+  res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/GetMaterials`, {
     method: "POST",
     // اذا نزعتها سوف يجدث هاذا المشكل : Error: "[object Object]" is not valid JSON
     cache: "no-store",
@@ -37,13 +36,16 @@ const page = async ({ params }) => {
         res.materials.length > 0 ? (
           <div className="mt-8 mx-4 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2">
             {res.materials.map((items, index) => (
-              <Link key={index} href={`${NumberNevaux}/${items.nameEn}`}>
-                <BoxMaterials
-                  _id={items._id}
-                  name={items.name}
-                  Tolesson={items.Tolesson}
-                />
-              </Link>
+              <MotionDev
+              >
+                <Link key={index} href={`${NumberNevaux}/${items.nameEn}`}>
+                  <BoxMaterials
+                    _id={items._id}
+                    name={items.name}
+                    Tolesson={items.Tolesson}
+                  />
+                </Link>
+              </MotionDev>
             ))}
           </div>
         ) : (
@@ -55,7 +57,7 @@ const page = async ({ params }) => {
               src={require("@/public/Problem/alert.png")}
               alt="Problem Image "
             />
-            ليست هناك دروس بعد .... سوف يام توفيرها مستقبلا
+            ليست هناك دروس بعد ....
           </div>
         )
       ) : (

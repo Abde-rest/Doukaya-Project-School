@@ -1,5 +1,6 @@
 import dbConnect from "@/lib/Dbconnect";
 import ChapterAndlesson from "@/Model/Chapter&Lesson/ModelChapter&Lesson";
+import { revalidatePath } from "next/cache";
 export async function POST(req) {
   try {
     // بما أنك تستخدم API Routes في Next.js،
@@ -45,6 +46,7 @@ export async function POST(req) {
         status: 404,
       });
     }
+    revalidatePath("/Dashboard/courses");
     return new Response(
       JSON.stringify({
         message: "Heloo from Date lesson route req is succ ",

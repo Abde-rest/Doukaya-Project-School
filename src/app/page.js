@@ -5,17 +5,12 @@ import Image from "next/image";
 import Cards from "./Componet/Hedaer/CardsUiHomePage/Card";
 import Categories from "./Componet/CategoriesUiHomePage/Categories";
 
-
 const page = async () => {
-  // افكار تطويرية في المتسقبل 
-  // اضافة جلسة في قاعدة البيانات 
-
-
-
+  // افكار تطويرية في المتسقبل
+  // اضافة جلسة في قاعدة البيانات
 
   // Response vs NextResponse: إذا كنت تستخدم Next.js 13 مع المجلد app, يفضل استخدام
 
-  
   // color suscces
   // #5dd183
 
@@ -29,7 +24,7 @@ const page = async () => {
 
   return (
     <div>
-      <div className="container m-auto px-2 sm:px-6 ">
+      <div className="container m-auto px-2 sm:px-6">
         <section className="text-center h-full mt-10 ">
           <h1 className=" text-4xl sm:text-4xl md:text-5xl lg:text-6xl font-bold  md:w-3/4 m-auto leading-snug font_Kufam">
             بالعلم والمعرفة نبني

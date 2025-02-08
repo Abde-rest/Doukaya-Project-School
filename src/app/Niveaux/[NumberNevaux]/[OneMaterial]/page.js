@@ -16,7 +16,7 @@ const page = async ({ params }) => {
     method: "POST",
     // اذا نزعتها سوف يجدث هاذا المشكل : Error: "[object Object]" is not valid JSON
     // نجرب نحها وندير ISR
-    cache: "no-store",
+    cache: "force-cache",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       NumberNevaux: `${NumberNevaux}`,

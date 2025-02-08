@@ -6,7 +6,7 @@ import MenuBar from "./Componet/MenuBar";
 
 const HeaderUi = () => {
   return (
-    <header className="container mt-5 sm:px-10 px-4  m-auto flex justify-between items-center gap-2 ">
+    <header className="container mt-5 sm:px-10 px-4  m-auto flex justify-between items-center gap-2">
       <Logo />
       <div className=" hidden sm:flex flex-1 justify-center gap-2">
         {" "}
