@@ -1,7 +1,5 @@
 import React from "react";
 import { theadListCourse } from "./ListTableTop";
-import { json } from "react-router-dom";
-
 const TableUsers = async ({ Serachquery }) => {
   /// حاول هنا use server action
 
