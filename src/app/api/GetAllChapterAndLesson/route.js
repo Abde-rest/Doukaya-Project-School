@@ -5,14 +5,15 @@ import ChapterAndlesson from "@/Model/Chapter&Lesson/ModelChapter&Lesson";
 // export const dynamic = "force-dynamic";
 export async function POST(req) {
   // كنت استطيع اراسل البيانات بطريقةاخرى عبر ال url ونخلي الدالة GET
-  let queryerach = await req.json();
+  let { Serachquery } = await req.json();
+  console.log(Serachquery);
+
   let findAllData;
 
   try {
     await dbConnect();
-
-    if (queryerach) {
-      const regex = new RegExp(queryerach, "i"); // ✅ `i` يجعل البحث غير حساس لحالة الأحرف
+    if (Serachquery) {
+      const regex = new RegExp(Serachquery, "i"); // ✅ `i` يجعل البحث غير حساس لحالة الأحرف
       findAllData = await ChapterAndlesson.aggregate([
         {
           $project: {

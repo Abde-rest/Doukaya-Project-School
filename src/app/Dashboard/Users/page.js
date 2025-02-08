@@ -2,6 +2,7 @@ import ToptextHedingpage from "../coponent/ToptextHedingpage";
 import BuutonAdd from "../coponent/BuutonAdd";
 import { RoleList } from "../courses/componet/listFilter";
 import { theadListUsers } from "../courses/componet/ListTableTop";
+import ActionUsers from "./Component/ActionUsers";
 
 // هل ياترا استخدم Table  في مكون واجد واعيد استخدامه في صفحتين
 // الجدول فيه بيانات يحضرها و filter معين
@@ -48,14 +49,6 @@ const page = async () => {
       {/* serach With : Email or name  من بعد  */}
       {/* filter : Role */}
       {/* The name user is Not found  */}
-      {/* <Table
-        nameTable={"المستخدمين"}
-        // ااسم الفيلتر
-        SelectFixedOne={"الدور"}
-        // المعطيات داخل الفيلتر
-        ListFilterOne={RoleList}
-        theadListTopTable={theadListUsers}
-      /> */}
 
       <div
         dir="rtl"
@@ -168,7 +161,7 @@ const page = async () => {
             </thead>
             <tbody className="text-start h-fit">
               {data.length > 0 ? (
-                data.map((item, index) => {
+                data.map((item) => {
                   return (
                     <tr
                       key={`${item._id}`}
@@ -196,14 +189,7 @@ const page = async () => {
                               </g>
                             </g>
                           </svg>
-                          <div className="group-hover:top-1/2 z-50 left-6 -translate-y-1/2 group-hover:opacity-100 opacity-0 transition-all duration-300 top-12 group-hover:block absolute bg-slate-100 shadow-md rounded-md">
-                            <span className="px-4 py-2 block hover:bg-blue-300">
-                              تعديل
-                            </span>
-                            <span className="px-4 py-2 block hover:bg-red-400">
-                              حذف
-                            </span>
-                          </div>
+                          <ActionUsers id={item._id} />
                         </button>
                       </td>
                     </tr>

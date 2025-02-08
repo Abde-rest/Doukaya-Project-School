@@ -8,6 +8,7 @@ import Logo from "./Componet/Hedaer/Componet/Logo";
 import Notifection from "./Componet/Notifection/Notifection";
 import { useNotifecation } from "@/store/storeNotifaction";
 import { motion } from "framer-motion";
+import NextTopLoader from "nextjs-toploader";
 export default function RootLayout({ children }) {
   const pathname = usePathname();
 
@@ -15,6 +16,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="bg-primary">
+        <NextTopLoader />
         {IsSucOrLoseorNote.Show && (
           <motion.div
             initial={{ opacity: 0, top: -70 }}
