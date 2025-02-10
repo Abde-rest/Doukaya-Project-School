@@ -21,6 +21,7 @@ const lessonSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  MinutesVedio: { type: String, require: true },
 });
 
 export const ChapterSchema = new mongoose.Schema(

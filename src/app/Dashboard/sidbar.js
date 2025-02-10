@@ -1,14 +1,28 @@
 import React from "react";
 import Logo from "../Componet/Hedaer/Componet/Logo";
 import Link from "next/link";
+import Image from "next/image";
 
 const Sidbar = () => {
   return (
-    <div className=" md:w-52 md:mr-6 mt-6 ">
+    <div className=" md:w-52 md:mr-6 mt-6 sticky top-0 ">
       <div className="text-center mb-10 hidden md:block   ">
         <Logo />
       </div>
       <ul className="pr-2 mt-10 lg:mt-0">
+        <li>
+          <Link
+            href="/Niveaux"
+            prefetch={true}
+            className="flex items-center p-2 justify-end  hover:-translate-x-2 transition">
+            <span className="hidden md:block ">المستويات </span>
+            <Image
+              className="w-5 h-7  ms-3"
+              src={require("@/public/Dahborde/graduation.svg")}
+              alt="graduation"
+            />
+          </Link>
+        </li>
         <li>
           <Link
             href="/Dashboard/statistique"

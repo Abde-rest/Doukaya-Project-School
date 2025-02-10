@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
+import ShochilaContect from "../../FotterUi/ShochilaContect";
 
 const MenuBar = () => {
   let [isMenuOpen, setisMenuOpen] = useState(false);
@@ -85,38 +86,10 @@ const MenuBar = () => {
                   className="text-sm  text-center py-2 px-4  rounded-md border-2 border-black bg-primaryV2">
                   التسجيل
                 </Link>
-                {/* <Link href={"/Login"} className="bg-primaryV2 text-center py-2 px-4 text-sm rounded-md border-2 border-black">
-                  تسجيل الدخول
-                </Link> */}
               </div>
             </div>
             <div className="flex items-center justify-end">
-              <ul className="flex  gap-3 items-center">
-                <span>
-                  <Image
-                    src={require("@/public/Sochail/twitter.png")}
-                    alt={"twitter"}
-                    width={28}
-                    height={28}
-                  />
-                </span>
-                <span>
-                  <Image
-                    src={require("@/public/Sochail/twitter.png")}
-                    alt={"twitter"}
-                    width={28}
-                    height={28}
-                  />
-                </span>
-                <span>
-                  <Image
-                    src={require("@/public/Sochail/twitter.png")}
-                    alt={"twitter"}
-                    width={28}
-                    height={28}
-                  />
-                </span>
-              </ul>
+              <ShochilaContect />
               <h4 className=" mr-3 ml-3 text-end"> : تابعنا </h4>
             </div>
           </div>

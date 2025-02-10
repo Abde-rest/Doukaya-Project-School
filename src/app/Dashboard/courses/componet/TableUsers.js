@@ -36,7 +36,7 @@ const TableUsers = async ({ Serachquery }) => {
   }
 
   return (
-    <div className="overflow-y-auto max-h-64">
+    <div className="overflow-y-auto max-h-96 md:max-h-60 ">
       {/* <Skeleton count={3} className="w-full h-12" /> */}
       {/* <Suspense fallback={<Skeleton count={3} className="w-full h-12" />}> */}
       <table className="w-full" style={{ minWidth: "600px" }}>
@@ -53,7 +53,6 @@ const TableUsers = async ({ Serachquery }) => {
           </tr>
         </thead>
         <tbody className="text-start h-fit">
-          {/* <Suspense fallback={<Skeleton count={3} className="w-full h-12" />}> */}
           {data ? (
             data.length > 0 ? (
               data.map((items, index) => {
@@ -113,7 +112,6 @@ const TableUsers = async ({ Serachquery }) => {
           ) : (
             <>لم تاتي بيانات</>
           )}
-          {/* </Suspense> */}
         </tbody>
       </table>
       {/* </Suspense> */}

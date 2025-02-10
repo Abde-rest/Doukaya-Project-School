@@ -18,13 +18,8 @@ const page = async () => {
       `${process.env.NEXT_PUBLIC_BASE_URL}/api/GetAllUsers`,
       {
         cache: "no-store",
-        headers: { "Cache-Control": "no-cache, no-store, must-revalidate" },
+        headers: { "Cache-Control":"no-cache, no-store, must-revalidate" },
       }
-      // وهاذا خطاء لاوم object 1
-      // ,
-      // {
-      //   cache: "no-store",
-      // }
     );
     if (!res.ok) {
       throw new Error("فشل جلب البيانات");
@@ -38,7 +33,7 @@ const page = async () => {
       <div className="flex items-center justify-between">
         {/* بناء  على الصفحة وال btnadd سوق  ارسل بيانات ال Form add  */}
 
-        <BuutonAdd addText={"مستخدم"} nameFunc={""} />
+        <BuutonAdd addText={"مستخدم"} />
         <div>
           <ToptextHedingpage
             Heding={"المستخدمين"}
@@ -49,7 +44,6 @@ const page = async () => {
       {/* serach With : Email or name  من بعد  */}
       {/* filter : Role */}
       {/* The name user is Not found  */}
-
       <div
         dir="rtl"
         className="bg-white  p-2 md:p-6 rounded-xl shadow-md mt-3   ">
@@ -146,8 +140,8 @@ const page = async () => {
         </div>
 
         {/* <!-- Table Section --> */}
-        <div className="overflow-y-auto max-h-64">
-          <table className="w-full" style={{ minWidth: "600px" }}>
+        <div className="overflow-y-auto  max-h-96 md:max-h-60 mb-3">
+          <table className="w-full " style={{ minWidth: "600px" }}>
             <thead className=" text-gray-700  sticky top-0 z-30 ">
               <tr className="text-start w-full bg-slate-50">
                 {theadListUsers.map((item, index) => {

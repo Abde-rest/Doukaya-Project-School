@@ -56,17 +56,17 @@ export default function RootLayout({ children }) {
           </div>
         ) : null}
 
-        {/* {pathname === "/Niveaux" ? <HeaderUiCors /> : null} */}
-
         {children}
 
-        {pathname === "/Login" ||
+        {/* {pathname === "/Login" ||
         pathname === "/SingUp" ||
         pathname === "/Dashboard/statistique" ||
         pathname === "/Dashboard/courses" ||
         pathname === "/Dashboard/Users" ? null : (
           <Footer />
-        )}
+        )} */}
+
+        {pathname === "/" || pathname === "Niveaux" ? <Footer /> : null}
       </body>
     </html>
   );

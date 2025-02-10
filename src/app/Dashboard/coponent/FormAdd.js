@@ -10,6 +10,7 @@ import {
 import CloseIocnFormAdd from "./CloseIocnFormAdd";
 import StoreFormAdd from "@/store/StoreFormAdd";
 import { useNotifecation } from "@/store/storeNotifaction";
+import { revalidatePath } from "next/cache";
 
 // نصيحة : يجب فصل كل جزئية على حدا فمثلا في input title or user or chapter ...
 // بحيث عندما تتغير الحالة في احدهم لا اتأثر على الاخرين
@@ -95,6 +96,8 @@ const FormAdd = ({ nameFunc }) => {
           }
         );
         const data = await response.json();
+        console.log("Res form Cloud : ");
+        console.log(data);
 
         // req To Date Base ||  api router
 
@@ -106,6 +109,7 @@ const FormAdd = ({ nameFunc }) => {
               body: JSON.stringify({
                 ...AllDataLesson,
                 VedioLesson: data.secure_url,
+                durationVedio:data.duration
               }),
               // لا تحتاج إلى تحديد Content-Type
               // إذا قمت بتحديد Content-Type: multipart/form-data بنفسك، فسيؤدي ذلك إلى كسر الطلب لأنه لن يحتوي على boundary المطلوب بواسطة Cloudinary لمعالجة البيانات المرسلة
@@ -241,6 +245,7 @@ const FormAdd = ({ nameFunc }) => {
             TextNotifeaction: `${data.message}`,
             Show: true,
           });
+          // revalidatePath("/Dashboard");
         }
       } catch (e) {
         console.log(e);

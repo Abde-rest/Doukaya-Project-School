@@ -4,9 +4,12 @@ import LessionOne from "./LessionOne";
 import VedioComponet from "./VedioComponet";
 
 const CahpterandVedio = ({ res }) => {
-  let [LinkVedioLessonWhenClick, SetLinkVedioLessonWhenClick] = useState(
-    res.chapter_1[0].link
-  );
+  console.log(res);
+
+  let [DataLesson, setDataLesson] = useState();
+  let [FisrtVedio, setFisrtVedio] = useState(res.chapter_1[0]);
+  // اول فيدي`و في الدروس
+  // res.chapter_1[0].link || ""
 
   return (
     <div className="flex  flex-col-reverse justify-between  lg:flex-row relative top-0 gap-5 left-0 w-full">
@@ -18,16 +21,18 @@ const CahpterandVedio = ({ res }) => {
             <div className="bg-[#f7bc4b] text-[#334457] px-4 py-3 rounded-t-lg">
               <h3 className="font-bold text-center">الفصل الأول</h3>
             </div>
-            <div className="max-h-52 overflow-y-scroll   ">
+            <div className="max-h-52 overflow-y-scroll w-full  ">
               {res.chapter_1.length > 0 ? (
                 res.chapter_1.map((item, index) => {
                   return (
                     <div key={index} className=" max-h-56 overflow-y-scroll">
                       <div
                         onClick={() => {
-                          SetLinkVedioLessonWhenClick(item.link);
+                          setDataLesson(item);
+                          setFisrtVedio("");
                         }}>
                         <LessionOne
+                        MinutesVedio={item.MinutesVedio}
                           title={item.title}
                           NumberIndex={index + 1}
                         />
@@ -36,7 +41,7 @@ const CahpterandVedio = ({ res }) => {
                   );
                 })
               ) : (
-                <div>لايوجد دروس بعد </div>
+                <div className="text-center p-2">لايوجد دروس بعد </div>
               )}
             </div>
           </div>
@@ -100,25 +105,10 @@ const CahpterandVedio = ({ res }) => {
 
       {/* start vedio  */}
       <div className="  rounded-b-lg lg:w-2/3 h-fit lg:sticky top-0 rounded-xl overflow-hidden ">
-        <VedioComponet LinkVedioLessonWhenClick={LinkVedioLessonWhenClick} />
-        <div className=" mt-7 bg-[#F4F4F5] rounded-md flex items-center justify-around">
-          <div className="text-end pt-2 px-2 pb-2 flex-1  ">
-            <h1 className="text-center font-semibold py-1 "> الوصف</h1>
-            {/* <p className="">{res.chapter_1[0].description}</p> */}
-          </div>
-          <div className="text-end pt-2 px-2 pb-2  flex-1 hover:bg-black/5 cursor-pointer">
-            <h1 className="text-center font-semibold py-1 ">تمارينات </h1>
-          </div>
-        </div>
-        {/* Content  */}
-        <div className="text-end mt-2 mb-3">
-          <h2 className="text-xl font-bold mb-4">عملية بيع القسط</h2>
-          <p className="text-[#33445799] leading-relaxed">
-            في هذا الدرس سنتعلم عن عملية بيع القسط وكيفية تطبيقها في الحياة
-            العملية. سنتعرف على المفاهيم الأساسية والخطوات المهمة في هذه
-            العملية.
-          </p>
-        </div>
+        <VedioComponet
+          DataLesson={DataLesson}
+          FisrtVedio={FisrtVedio}
+        />
       </div>
       {/* end vedio  */}
     </div>

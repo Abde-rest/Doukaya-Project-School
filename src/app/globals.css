@@ -26,7 +26,7 @@ body {
 
 ::-webkit-scrollbar {
   width: 5px; /* عرض شريط التمرير */
-  height: 10px; /* ارتفاع شريط التمرير الأفقي */
+  height: 5px; /* ارتفاع شريط التمرير الأفقي */
 }
 ::-webkit-scrollbar-thumb {
   background: rgba(0, 0, 0, 0.342);

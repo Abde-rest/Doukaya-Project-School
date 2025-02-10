@@ -1,6 +1,6 @@
 import dbConnect from "@/lib/Dbconnect";
 import ChapterAndlesson from "@/Model/Chapter&Lesson/ModelChapter&Lesson";
-import { revalidatePath } from "next/cache";
+import Material from "@/Model/Materails/Matersil";
 export async function POST(req) {
   try {
     // بما أنك تستخدم API Routes في Next.js،
@@ -9,17 +9,9 @@ export async function POST(req) {
 
     // لا يمكن استقبال FormData مباشرة في API Route باستخدام req.json() لأن App Router في Next.js لا يعالج البيانات بصيغة multipart/form-data تلقائيًا.
     let DateLesson = await req.json();
-    console.log(DateLesson);
-    // {
-    //   nameLesson: 'kkkkkkkkkkkkkkk',
-    //   YeraLesson: '1am',
-    //   ChapterLesson: 'chapter_1',
-    //   MaterialLesson: 'physics',
-    //   DescriptionLesson: null,
-    //   VedioLesson: 'https://res.cloudinary.com/dkfhcfk3j/video/upload/v1738626867/lnpdxswwbuu2y663twvv.mp4',
-    //   ExerciceLesson: null
-    // }
     await dbConnect();
+    const durationInMinutes = (DateLesson.durationVedio / 60).toFixed(2);
+
     let chapterSelcet = DateLesson.ChapterLesson;
     let UpdateLesson = await ChapterAndlesson.findOneAndUpdate(
       {
@@ -34,6 +26,7 @@ export async function POST(req) {
             title: DateLesson.nameLesson,
             description: DateLesson.DescriptionLesson,
             link: DateLesson.VedioLesson,
+            MinutesVedio: durationInMinutes,
           },
         },
       },
@@ -46,7 +39,7 @@ export async function POST(req) {
         status: 404,
       });
     }
-    revalidatePath("/Dashboard/courses");
+    const mate = await Material.find({});
     return new Response(
       JSON.stringify({
         message: "Heloo from Date lesson route req is succ ",
