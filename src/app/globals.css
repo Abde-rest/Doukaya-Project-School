@@ -175,7 +175,7 @@ body {
 
 .gradient-text {
   background: linear-gradient(90deg, rgb(var(--text)), rgb(var(--primary)));
-  -webkit-background-clip: text;
+  /* -webkit-background-clip: text; */
   color: transparent;
 }
 
@@ -190,4 +190,18 @@ body {
   50% {
     transform: translateY(-10px);
   }
+}
+
+.plyr--full-ui {
+  border-radius: 10px;
+  background-color: #000;
+}
+
+.plyr__controls {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+.textEn {
+  direction: rtl;
+  unicode-bidi: plaintext;
+  text-align: start;
 }

@@ -14,7 +14,7 @@ export default function RootLayout({ children }) {
 
   let { IsSucOrLoseorNote } = useNotifecation();
   return (
-    <html lang="en">
+    <html lang="ar" dir="rtl">
       <body className="bg-primary">
         <NextTopLoader />
         {IsSucOrLoseorNote.Show && (

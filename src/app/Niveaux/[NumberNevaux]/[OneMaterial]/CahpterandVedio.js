@@ -4,7 +4,7 @@ import LessionOne from "./LessionOne";
 import VedioComponet from "./VedioComponet";
 
 const CahpterandVedio = ({ res }) => {
-  console.log(res);
+  // console.log(res);
 
   let [DataLesson, setDataLesson] = useState();
   let [FisrtVedio, setFisrtVedio] = useState(res.chapter_1[0]);
@@ -58,7 +58,8 @@ const CahpterandVedio = ({ res }) => {
                     <div key={index} className=" max-h-56 overflow-y-scroll">
                       <div
                         onClick={() => {
-                          SetLinkVedioLessonWhenClick(item.link);
+                          setDataLesson(item);
+                          setFisrtVedio("");
                         }}>
                         <LessionOne
                           title={item.title}
@@ -85,7 +86,8 @@ const CahpterandVedio = ({ res }) => {
                     <div key={index} className=" max-h-56 overflow-y-scroll">
                       <div
                         onClick={() => {
-                          SetLinkVedioLessonWhenClick(item.link);
+                          setDataLesson(item);
+                          setFisrtVedio("");
                         }}>
                         <LessionOne
                           title={item.title}

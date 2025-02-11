@@ -42,12 +42,12 @@ const page = async ({ params }) => {
 
   return (
     <div className="mt-8 px-3 m-auto  ">
-      <Suspense
+      {/* <Suspense
         fallback={
           <div className=" block text-center ">
             <Spinner></Spinner>
           </div>
-        }>
+        }> */}
         {res ? (
           <CahpterandVedio res={res} />
         ) : (
@@ -60,7 +60,7 @@ const page = async ({ params }) => {
             <h1 className="text-center mt-4 mb-9">هناك مشكلة غير متوقعة </h1>
           </div>
         )}
-      </Suspense>
+      {/* </Suspense> */}
     </div>
   );
 };
