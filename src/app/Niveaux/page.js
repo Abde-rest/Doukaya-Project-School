@@ -1,44 +1,41 @@
-import React from "react";
 import BoxNevaux from "./Componet/BoxNevaux/BoxNevaux";
-import Image from "next/image";
-
+import MotionDev from "./Componet/Motion/motionDev";
+import TopHedingThepage from "./Componet/TopHedingThepage";
 
 const page = () => {
   return (
     <div>
       <div className={`bg-[#FCFAEF] z-40  antialiased `}>
         <div className="h-full w-full container m-auto ">
-          <div className="mb-12 mt-20 flex items-center justify-center gap-2">
-            <Image
-              src={require("@/public/icons/IconsHomePage/star2.png")}
-              className="w-10 h-10"
-              alt="Stars"
-            />
-            <h2 className="text-2xl text-center font-bold text-[#334457] font_Kufam ">
-              المستويات التعليمية
-            </h2>
-          </div>
+          <TopHedingThepage name={" المستويات التعليمية"} />
           {/* Box  Nevaux  */}
           <div className="px-10 py-11 grid grid-cols-1 sm:grid-cols-2   gap-4 lg:grid-cols-3 text-end">
+            {/* <MotionDev
+            
+            ></MotionDev> */}
             <BoxNevaux
               image={require("@/public/Svg_NumberNeavaux/level1.png")}
               textNevaux={"السنة الأولى متوسط"}
               hrefLink={"1am"}
+              description={"دروس للسنة الاولى "}
             />{" "}
             <BoxNevaux
               image={require("@/public/Svg_NumberNeavaux/level2.png")}
               textNevaux={"السنة الثانية متوسط"}
               hrefLink={"2am"}
+              description={"دروس للسنة الثانية "}
             />{" "}
             <BoxNevaux
               image={require("@/public/Svg_NumberNeavaux/level3.png")}
               textNevaux={"السنة الثالثة متوسط"}
               hrefLink={"3am"}
+              description={"دروس للسنة الثالثة "}
             />{" "}
             <BoxNevaux
               image={require("@/public/Svg_NumberNeavaux/level4.png")}
               textNevaux={"السنة الرابعة متوسط"}
               hrefLink={"4am"}
+              description={"دروس للسنة الرابعة "}
             />
           </div>
           <div className="glass rounded-2xl p-8 mb-12 w-5/6 m-auto">

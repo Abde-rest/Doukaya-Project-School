@@ -2,6 +2,8 @@ import React, { Suspense } from "react";
 import Spinner from "@/app/Componet/spinnerUi/spinner";
 import CahpterandVedio from "./CahpterandVedio";
 import Image from "next/image";
+import Error from "../error";
+import NotFoundContent from "../../Componet/HandelingError/NotFoundContent";
 
 // اضافة زر العودة
 const page = async ({ params }) => {
@@ -15,8 +17,6 @@ const page = async ({ params }) => {
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/GetChaptersAndLesson`,
     {
       method: "POST",
-      // اذا نزعتها سوف يجدث هاذا المشكل : Error: "[object Object]" is not valid JSON
-      // نجرب نحها وندير ISR
       cache: "no-store",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -26,41 +26,27 @@ const page = async ({ params }) => {
     }
   );
 
-  if (!res.ok) {
-    return (
-      <div className="text-center ">
-        <Image
-          className="w-40 h-40  m-auto"
-          src={require("@/public/Problem/error.png")}
-          alt="Problem image "
-        />
-        <h1 className="text-center mt-4 mb-9">هناك مشكلة غير متوقعة </h1>
-      </div>
-    );
-  }
   res = await res.json();
+  console.log(res);
 
   return (
     <div className="mt-8 px-3 m-auto  ">
-      {/* <Suspense
+      <Suspense
         fallback={
-          <div className=" block text-center ">
+          <div className=" block text-center m-auto ">
             <Spinner></Spinner>
           </div>
-        }> */}
-        {res ? (
+        }>
+        {/* Res => " null " Is : الملف غير موجود في الاستجابة اي انك اضافته في قاعدة البيانات   */}
+
+        {res.chapter_1.length > 0 ||
+        res.chapter_2.length > 0 ||
+        res.chapter_3.length > 0 ? (
           <CahpterandVedio res={res} />
         ) : (
-          <div className="text-center ">
-            <Image
-              className="w-40 h-40  m-auto"
-              src={require("@/public/Problem/error.png")}
-              alt="Problem image "
-            />
-            <h1 className="text-center mt-4 mb-9">هناك مشكلة غير متوقعة </h1>
-          </div>
+          <NotFoundContent />
         )}
-      {/* </Suspense> */}
+      </Suspense>
     </div>
   );
 };

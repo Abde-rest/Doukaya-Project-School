@@ -8,7 +8,7 @@ export default function NevauxLayout({ children }) {
   let [isOpen, setisopen] = useState(false);
   let [isOpenNevauxBar, setisOpenNevauxBar] = useState(false);
   return (
-    <div>
+    <div className="container m-auto">
 
       <HeaderUiCors isOpen={isOpen} setisopen={setisopen} />
       <MenuBar
@@ -18,6 +18,7 @@ export default function NevauxLayout({ children }) {
         setisOpenNevauxBar={setisOpenNevauxBar}
       />
       {children}
+      {/* <Footer/> */}
     </div>
   );
 }

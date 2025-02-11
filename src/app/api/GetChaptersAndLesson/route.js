@@ -1,5 +1,6 @@
 import dbConnect from "@/lib/Dbconnect";
 import ChapterAndlesson from "@/Model/Chapter&Lesson/ModelChapter&Lesson";
+// export const dynamic = "force-dynamic";
 export async function POST(req) {
   try {
     let { OneMaterial, NumberNevaux } = await req.json();

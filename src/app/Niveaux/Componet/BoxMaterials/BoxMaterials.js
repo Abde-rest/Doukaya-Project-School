@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 
-const BoxMaterials = ({ _id, name, Tolesson }) => {
+const BoxMaterials = ({ _id, name, Tolesson, LogoMat }) => {
   // Box المادة
   // <div className="flex hover:bg-slate-300 hover:scale-95 duration-100 cursor-pointer items-center rounded-md overflow-hidden justify-between bg-white oe   shadow-lg mb-1 md:mb-3 ">
   //   {/* nubmer metar  */}
@@ -22,7 +22,7 @@ const BoxMaterials = ({ _id, name, Tolesson }) => {
   //   </div>
   // </div>
   return (
-    <div className="gradient-border z-20 relative bloc mb-10">
+    <div key={_id} className="gradient-border z-20 relative bloc mb-10">
       <div className="glass rounded-lg p-6 h-full card-hover z-20">
         <div className="flex items-star justify-between mb-4 z-20">
           <div className="px-3 py-1 h-fit rounded-full glass text-sm font-medium text-[#334457]">
@@ -39,8 +39,9 @@ const BoxMaterials = ({ _id, name, Tolesson }) => {
               <Image
                 width={30}
                 height={30}
-                src={require("@/public/iconsMaterials/atom (1).png")}
+                src={LogoMat}
                 alt={`${name} Logo`}
+                unoptimized={true}
               />
             </div>
           </div>

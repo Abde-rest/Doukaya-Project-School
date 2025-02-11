@@ -10,6 +10,8 @@ export const MaterialSchema = new mongoose.Schema(
     levelId: { type: String, required: true }, // مرجع للمستوى (مثل "1am")
     chapters: [{ type: String, require: true }], // مصفوفة تحتوي على معرفات الفصول (مثل ["chapter_1", "chapter_2", "chapter_3"])
     Tolesson: { type: Number, required: true },
+    nameEn: { type: String, required: true },
+    LogoMat: { type: String, required: true },
   },
   { collection: "materials" }
 );

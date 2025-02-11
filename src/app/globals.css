@@ -163,6 +163,9 @@ body {
   transform: translateY(-5px);
   box-shadow: 0 10px 20px rgba(51, 68, 87, 0.1);
 }
+
+/*  */
+
 .gradient-border {
   background: linear-gradient(
     90deg,
@@ -173,6 +176,7 @@ body {
   border-radius: 1rem;
 }
 
+/*  */
 .gradient-text {
   background: linear-gradient(90deg, rgb(var(--text)), rgb(var(--primary)));
   /* -webkit-background-clip: text; */
