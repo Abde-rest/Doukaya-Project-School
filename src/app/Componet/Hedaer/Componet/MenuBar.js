@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import ShochilaContect from "../../FotterUi/ShochilaContect";
@@ -82,7 +81,7 @@ const MenuBar = () => {
               </div>
               <div className="flex flex-col mt-4  gap-3">
                 <Link
-                  href={"/SingUp"}
+                  href={"/SignUp"}
                   className="text-sm  text-center py-2 px-4  rounded-md border-2 border-black bg-primaryV2">
                   التسجيل
                 </Link>

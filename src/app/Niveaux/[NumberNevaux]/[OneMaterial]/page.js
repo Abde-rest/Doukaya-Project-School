@@ -39,9 +39,9 @@ const page = async ({ params }) => {
         }>
         {/* Res => " null " Is : الملف غير موجود في الاستجابة اي انك اضافته في قاعدة البيانات   */}
 
-        {res.chapter_1.length > 0 ||
-        res.chapter_2.length > 0 ||
-        res.chapter_3.length > 0 ? (
+        {res?.chapter_1.length > 0 ||
+        res?.chapter_2.length > 0 ||
+        res?.chapter_3.length > 0 ? (
           <CahpterandVedio res={res} />
         ) : (
           <NotFoundContent />

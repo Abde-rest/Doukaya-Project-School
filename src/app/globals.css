@@ -25,11 +25,11 @@ body {
 /* scoll  */
 
 ::-webkit-scrollbar {
-  width: 5px; /* عرض شريط التمرير */
+  width: 7px; /* عرض شريط التمرير */
   height: 5px; /* ارتفاع شريط التمرير الأفقي */
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.342);
+  background: peru;
 }
 
 /* The Best Color site  */

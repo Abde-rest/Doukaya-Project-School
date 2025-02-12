@@ -3,6 +3,7 @@
 import Footer from "@/app/Componet/FotterUi/Footer";
 import Image from "next/image";
 import { useEffect } from "react";
+import BtnBack from "../Componet/HandelingError/BtnBack";
 
 export default function Error({ error, reset }) {
   useEffect(() => {
@@ -18,14 +19,18 @@ export default function Error({ error, reset }) {
         alt=""
       />
       <h2 className="text-2xl"> حدثت مشكلة ما !!! رجاء اعد المحاولة </h2>
-      <button
-        className="bg-primaryV2  rounded-md px-2 py-2 mt-3 hover:bg-primaryV2/70"
-        onClick={
-          // Attempt to recover by trying to re-render the segment
-          () => reset()
-        }>
-        حاول مرة اخرى
-      </button>
+      <div className="flex items-center gap-3 justify-center">
+        {" "}
+        <button
+          className="bg-primaryV2  rounded-md px-2 py-2 mt-3 hover:bg-primaryV2/70"
+          onClick={
+            // Attempt to recover by trying to re-render the segment
+            () => reset()
+          }>
+          حاول مرة اخرى
+        </button>
+        <BtnBack />
+      </div>
       <Footer />
     </div>
   );

@@ -20,6 +20,8 @@ export let authoption = {
         let { email, password } = credentials;
 
         let user = await User.findOne({ email });
+        console.log("Role الخاص به هو ");
+        console.log(user);
 
         if (!user) {
           throw new Error("الحساب غير موجود  !!  رجاء أنشئ حساب");
@@ -31,19 +33,36 @@ export let authoption = {
           throw new Error(" كلمة المرور  غير صحيحة   ");
         }
 
-        return { email: user.email };
+        // return { email: user.email, role: user.role };
+        return { id: user._id, email: user.email, role: user.role };
       },
     }),
   ],
   pages: {
     signIn: "/Login", // صفحة تسجيل الدخول
-    newUser: "/SingUp", // صفحة التسجيل
+    newUser: "/SignUp", // صفحة التسجيل
   },
   // secret: ,
   secret: process.env.NEXTAUTH_SECRET,
   session: {
     strategy: "jwt",
     maxAge: 30 * 24 * 60 * 60, // الجلسة تستمر لمدة 30 يومًا
+  },
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+        token.role = user.role; // حفظ الدور في الـ JWT
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      if (token) {
+        session.user.id = token.id;
+        session.user.role = token.role; // حفظ الدور في `session`
+      }
+      return session;
+    },
   },
 };
 

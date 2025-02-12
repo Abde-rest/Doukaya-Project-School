@@ -1,9 +1,9 @@
-import React from "react";
 import "@/app/globals.css";
 import "./globals.css";
 import Image from "next/image";
 import Cards from "./Componet/Hedaer/CardsUiHomePage/Card";
 import Categories from "./Componet/CategoriesUiHomePage/Categories";
+import Link from "next/link";
 
 const page = async () => {
   // افكار تطويرية في المتسقبل
@@ -56,11 +56,14 @@ const page = async () => {
             <div className=" flex  justify-center gap-4">
               {" "}
               <button className="click_button   font-bold mt-5  transition">
-                اكتشف دوراتنا
+                اكتشف الدروس
               </button>
-              <button className="click_button bg-primaryV2  font-bold mt-5 hover:bg-primaryV2/50 transition">
-                ابدأ التعلم الأن
-              </button>
+              <Link href={"/Niveaux"}>
+                {" "}
+                <button className="click_button bg-primaryV2  font-bold mt-5 hover:bg-primaryV2/50 transition">
+                  ابدأ التعلم الأن
+                </button>
+              </Link>
             </div>
           </div>
         </section>

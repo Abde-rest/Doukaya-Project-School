@@ -63,7 +63,7 @@ const Login = () => {
     <form onSubmit={(e) => HandelLoginOrSingUp(e)}>
       {MessageIflogin.statusMesage === true && (
         <div className="text-center text-xs bg-Suscces p-2 mt-1 rounded-sm">
-          <p> ... {MessageIfSingUp.message} جاري تحويلك </p>
+          <p> ... {MessageIflogin.message} جاري تحويلك </p>
         </div>
       )}
       {MessageIflogin.statusMesage === false && (
@@ -203,7 +203,7 @@ const Login = () => {
 
       <div className="text-center text-sm text-[#33445799] mt-5">
         ليس لديك حساب ؟
-        <Link href="/SingUp" className="text-[#f7bc4b] hover:underline">
+        <Link href="/SignUp" className="text-[#f7bc4b] hover:underline">
           تسجيل الدخول
         </Link>
       </div>

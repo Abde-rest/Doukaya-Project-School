@@ -29,7 +29,7 @@ export default function RootLayout({ children }) {
         )}
         {pathname === "/" && <HeaderUi />}
 
-        {pathname === "/Login" || pathname === "/SingUp" ? (
+        {pathname === "/Login" || pathname === "/SignUp" ? (
           <div className="flex container m-auto px-20 items-center justify-between mt-12 ">
             {/* Back Ui  */}
             <Link href={"/"}>

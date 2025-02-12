@@ -2,6 +2,7 @@ import React from "react";
 import Logo from "../Componet/Hedaer/Componet/Logo";
 import Link from "next/link";
 import Image from "next/image";
+import BtnSignOut from "./BtnSignOut";
 
 const Sidbar = () => {
   return (
@@ -75,7 +76,7 @@ const Sidbar = () => {
           </Link>
         </li>
 
-        <li className="p-2  hover:bg-red-400">
+        {/* <li className="p-2  hover:bg-red-400">
           <a
             href="#"
             className="flex items-center  justify-end hover:-translate-x-2 transition">
@@ -95,7 +96,9 @@ const Sidbar = () => {
               />
             </svg>
           </a>
-        </li>
+        </li> */}
+
+        <BtnSignOut />
       </ul>
     </div>
   );

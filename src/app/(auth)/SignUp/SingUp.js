@@ -61,8 +61,6 @@ const SingUp = () => {
   // إرسال البيانات إلى الخادم
   const HandelSingUp = async (e) => {
     e.preventDefault();
-    console.log(DataUserSingUp);
-
     if (!validate()) {
       return;
     }
@@ -105,7 +103,7 @@ const SingUp = () => {
     <form onSubmit={(e) => HandelSingUp(e)} className="relative">
       {MessageIfSingUp.statusMesage === true && (
         <div className="text-center text-sm bg-Suscces/70 p-2 mt-1 rounded-sm">
-          <p> ...  {MessageIfSingUp.message} جاري تحويلك </p>
+          <p> ... {MessageIfSingUp.message} جاري تحويلك </p>
         </div>
       )}
       {MessageIfSingUp.statusMesage === false && (

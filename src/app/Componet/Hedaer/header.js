@@ -33,7 +33,7 @@ const HeaderUi = () => {
             تسجيل الدخول
           </button>
         </Link>
-        <Link href={"/SingUp"}>
+        <Link href={"/SignUp"}>
           {" "}
           <button className=" py-2 px-4 text-sm rounded-md border-2 border-black bg-primaryV2 ">
             تسجيل
