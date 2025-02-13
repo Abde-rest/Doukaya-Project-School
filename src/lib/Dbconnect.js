@@ -7,7 +7,7 @@ export default async function dbConnect() {
       return mongoose.connection.asPromise();
     } else {
       await mongoose.connect(process.env.MONGODB_URI, {
-        useUnifiedTopology: true,
+        // useUnifiedTopology: true,
         // serverSelectionTimeoutMS: 30000, // مهلة تصل إلى 30 ثانية
       });
     }
