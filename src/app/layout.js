@@ -11,11 +11,11 @@ import { motion } from "framer-motion";
 import NextTopLoader from "nextjs-toploader";
 import { SessionProvider } from "next-auth/react";
 import { Cairo } from "next/font/google";
-
+import { Analytics } from "@vercel/analytics/react";
 const cairo = Cairo({
   weight: ["400", "500", "600", "700"],
   style: ["normal"],
-  subsets: ['latin'],
+  subsets: ["latin"],
   display: "swap",
 });
 
@@ -25,7 +25,13 @@ export default function RootLayout({ children }) {
   let { IsSucOrLoseorNote } = useNotifecation();
   return (
     <html lang="ar" dir="rtl">
+      <head>
+        {/* ربط ملف manifest.json الموجود في public */}
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#317EFB" />
+      </head>
       <body className={`bg-primary ${cairo.className}`}>
+        <Analytics />
         <NextTopLoader />
         {IsSucOrLoseorNote.Show && (
           <motion.div
