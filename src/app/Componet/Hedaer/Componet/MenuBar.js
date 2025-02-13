@@ -2,12 +2,14 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import ShochilaContect from "../../FotterUi/ShochilaContect";
+import Image from "next/image";
 
-const MenuBar = () => {
+const MenuBar = ({ status }) => {
   let [isMenuOpen, setisMenuOpen] = useState(false);
   function HandelMenu() {
     setisMenuOpen(!isMenuOpen);
   }
+
   return (
     <div className="sm:hidden  ">
       <div
@@ -79,17 +81,30 @@ const MenuBar = () => {
                   الرئيسية
                 </Link>
               </div>
-              <div className="flex flex-col mt-4  gap-3">
+              {status === "unauthenticated" ? (
+                <div className="flex flex-col mt-4  gap-3">
+                  <Link
+                    href={"/SignUp"}
+                    className="text-sm  text-center py-2 px-4  rounded-md border-2 border-black bg-primaryV2">
+                    التسجيل
+                  </Link>
+                </div>
+              ) : (
                 <Link
-                  href={"/SignUp"}
-                  className="text-sm  text-center py-2 px-4  rounded-md border-2 border-black bg-primaryV2">
-                  التسجيل
+                  href={"/Niveaux"}
+                  className="flex items-center justify-center gap-1 click_button bg-primaryV2  font-bold mt-5 hover:bg-primaryV2/50 transition">
+                  <button>ابدأ التعلم الأن</button>
+                  <Image
+                    className="w-10 h-10"
+                    src={require("@/public/UserInterface/user.png")}
+                    alt="UersInterface "
+                  />
                 </Link>
-              </div>
+              )}
             </div>
             <div className="flex items-center justify-end">
               <ShochilaContect />
-              <h4 className=" mr-3 ml-3 text-end"> : تابعنا </h4>
+              <h4 className=" mr-3 ml-3 text-end"> : تواصل معنا </h4>
             </div>
           </div>
         </div>

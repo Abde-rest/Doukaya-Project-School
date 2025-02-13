@@ -2,7 +2,6 @@
 import Link from "next/link";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
-import Image from "next/image";
 import Spinner from "@/app/Componet/spinnerUi/spinner";
 
 import { useRouter } from "next/navigation";
@@ -34,7 +33,7 @@ const Login = () => {
       // redirect true تسبب مشكلة اذا ها هاك خطاء في التسجيل
       // سوف ينتقل في حالى الخطاء ايضا
       redirect: false, //  إعادة التوجيه التلقائي
-      // callbackUrl: "/Niveaux", // وجهة إعادة التوجيه
+      callbackUrl: "/Niveaux", // وجهة إعادة التوجيه
     });
 
     if (result.ok) {
@@ -45,7 +44,7 @@ const Login = () => {
       });
       setSpinnerisShow(false);
       console.log(result);
-      router.push("/Niveaux");
+       router.push("/Niveaux");
     } else {
       console.log(result);
 

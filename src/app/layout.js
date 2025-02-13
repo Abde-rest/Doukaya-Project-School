@@ -9,13 +9,23 @@ import Notifection from "./Componet/Notifection/Notifection";
 import { useNotifecation } from "@/store/storeNotifaction";
 import { motion } from "framer-motion";
 import NextTopLoader from "nextjs-toploader";
+import { SessionProvider } from "next-auth/react";
+import { Cairo } from "next/font/google";
+
+const cairo = Cairo({
+  weight: ["400", "500", "600", "700"],
+  style: ["normal"],
+  subsets: ['latin'],
+  display: "swap",
+});
+
 export default function RootLayout({ children }) {
   const pathname = usePathname();
 
   let { IsSucOrLoseorNote } = useNotifecation();
   return (
     <html lang="ar" dir="rtl">
-      <body className="bg-primary">
+      <body className={`bg-primary ${cairo.className}`}>
         <NextTopLoader />
         {IsSucOrLoseorNote.Show && (
           <motion.div
@@ -23,12 +33,15 @@ export default function RootLayout({ children }) {
             animate={{ opacity: 1, top: 20 }}
             exit={{ opacity: 0, top: -70 }}
             transition={{ duration: 0.5 }}
-            className="z-[9999] fixed  p-2 rounded  left-1/2 -translate-x-1/2 duration-100 w-fit text-center">
+            className="z-[9999] fixed  p-2 rounded font-  left-1/2 -translate-x-1/2 duration-100 w-fit text-center">
             <Notifection IsSucOrLoseorNote={IsSucOrLoseorNote} />
           </motion.div>
         )}
-        {pathname === "/" && <HeaderUi />}
-
+        {pathname === "/" && (
+          <SessionProvider>
+            <HeaderUi />
+          </SessionProvider>
+        )}
         {pathname === "/Login" || pathname === "/SignUp" ? (
           <div className="flex container m-auto px-20 items-center justify-between mt-12 ">
             {/* Back Ui  */}
@@ -55,9 +68,10 @@ export default function RootLayout({ children }) {
             <Logo />
           </div>
         ) : null}
-
-        {children}
-
+        <SessionProvider>
+          {/* <HeaderUi /> */}
+          {children}
+        </SessionProvider>
         {/* {pathname === "/Login" ||
         pathname === "/SingUp" ||
         pathname === "/Dashboard/statistique" ||

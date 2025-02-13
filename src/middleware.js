@@ -5,29 +5,36 @@ export async function middleware(req) {
     req,
     secret: process.env.NEXTAUTH_SECRET,
   });
-  console.log(token);
 
-  // if (req.nextUrl.pathname.startsWith("/Niveaux") && !isLoggedIn) {
-  //   return NextResponse.redirect(new URL("/SignUp", req.url));
-  // }
-  if (!token) {
+  // ✅ استثناء API routes
+  if (req.nextUrl.pathname.startsWith("/api/")) {
+    return NextResponse.next();
+  }
+
+  const protectedRoutes = ["/Niveaux", "/Dashboard"];
+
+  const isProtectedRoute = protectedRoutes.some((route) =>
+    req.nextUrl.pathname.startsWith(route)
+  );
+
+  if (isProtectedRoute && !token) {
     return NextResponse.redirect(new URL("/SignUp", req.url));
   }
-  // if (req.nextUrl.pathname.startsWith("/admin") && token.role !== "admin") {
-  //   return NextResponse.redirect(new URL("/not-authorized", req.url));
-  // }
+
+  if (["/SignUp", "/Login"].includes(req.nextUrl.pathname) && token) {
+    return NextResponse.redirect(new URL("/Niveaux", req.url));
+  }
+
   if (
-    req.nextUrl.pathname.startsWith("/SignUp") ||
-    (req.nextUrl.pathname.startsWith("/Login") && token)
+    req.nextUrl.pathname.startsWith("/Dashboard") &&
+    (!token || token.role !== "admin")
   ) {
     return NextResponse.redirect(new URL("/Niveaux", req.url));
   }
-  if (req.nextUrl.pathname.startsWith("/Dashboard") && token.role !== "admin") {
-    return NextResponse.redirect(new URL("/Niveaux", req.url));
-  }
+
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/Niveaux/:path*", "/Dashboard/:path*"],
+  matcher: ["/Niveaux/:path*", "/Dashboard/:path*", "/SignUp", "/Login"],
 };

@@ -4,7 +4,14 @@ import Image from "next/image";
 import Cards from "./Componet/Hedaer/CardsUiHomePage/Card";
 import Categories from "./Componet/CategoriesUiHomePage/Categories";
 import Link from "next/link";
+import { Kufam } from "next/font/google";
 
+const kufam = Kufam({
+  weight: ["400", "500", "600", "700"],
+  style: ["normal"],
+  subsets: ["latin"],
+  display: "swap",
+});
 const page = async () => {
   // افكار تطويرية في المتسقبل
   // اضافة جلسة في قاعدة البيانات
@@ -26,7 +33,8 @@ const page = async () => {
     <div>
       <div className="container m-auto px-2 sm:px-6">
         <section className="text-center h-full mt-10 ">
-          <h1 className=" text-4xl sm:text-4xl md:text-5xl lg:text-6xl font-bold  md:w-3/4 m-auto leading-snug font_Kufam">
+          <h1
+            className={` text-4xl sm:text-4xl md:text-5xl lg:text-6xl font-bold  md:w-3/4 m-auto leading-snug ${kufam.className}`}>
             بالعلم والمعرفة نبني
             <Image
               src={require("@/public/img1.png")}

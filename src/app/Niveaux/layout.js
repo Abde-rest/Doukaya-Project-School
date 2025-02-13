@@ -21,7 +21,7 @@ export default function NevauxLayout({ children }) {
         />
       </SessionProvider>
       {children}
-      <Footer/>
+      <Footer />
     </div>
   );
 }

@@ -1,8 +1,6 @@
 "use client";
-
 import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
-// import HerderUiUserProfail from "@/app/Componet/Hedaer/HeaderUiCors/HerderUiUserProfaik/HerderUiUserProfaik";
 import Link from "next/link";
 const MenuBar = ({
   isOpen,
@@ -11,10 +9,6 @@ const MenuBar = ({
   setisOpenNevauxBar,
 }) => {
   let { data } = useSession();
-
-  // console.log("Dtaw user is : ");
-  // console.log(data);
-
   return (
     <>
       {/* BacGround Black When Open menu  */}
@@ -25,7 +19,7 @@ const MenuBar = ({
         {/* Menu bar  */}
         <div
           className={` p-5   transition-all ease-linear top-0 ml-auto relative bg-black h-full md:w-80 ${
-            isOpen ? "right-0" : "-right-96"
+            isOpen ? "-right-28 sm:-right-0  pr-28 sm:pr-0" : "-right-96"
           }  `}>
           {/* Top Menu Close */}
           <button
@@ -151,6 +145,7 @@ const MenuBar = ({
                     isOpenNevauxBar ? "  h-40" : " h-0  "
                   }`}>
                   <Link
+                    onClick={() => setisopen(!isOpen)}
                     className="flex items-center gap-2 justify-end pr-6"
                     href={"/Niveaux/1am"}>
                     <li className=" py-2  text-white/70 hover:text-white duration-100 rounded-lg">
@@ -163,6 +158,7 @@ const MenuBar = ({
                     />
                   </Link>
                   <Link
+                    onClick={() => setisopen(!isOpen)}
                     className="flex items-center gap-2 justify-end pr-6"
                     href={"/Niveaux/2am"}>
                     <li className=" py-2  text-white/70 hover:text-white duration-100 rounded-lg">
@@ -175,6 +171,7 @@ const MenuBar = ({
                     />
                   </Link>
                   <Link
+                    onClick={() => setisopen(!isOpen)}
                     className="flex items-center gap-2 justify-end pr-6"
                     href={"/Niveaux/3am"}>
                     <li className=" py-2  text-white/70 hover:text-white duration-100 rounded-lg">
@@ -187,6 +184,7 @@ const MenuBar = ({
                     />
                   </Link>
                   <Link
+                    onClick={() => setisopen(!isOpen)}
                     className="flex items-center gap-2 justify-end pr-6"
                     href={"/Niveaux/4am"}>
                     <li className=" py-2  text-white/70 hover:text-white duration-100 rounded-lg">

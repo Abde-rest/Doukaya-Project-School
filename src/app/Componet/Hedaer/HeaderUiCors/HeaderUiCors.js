@@ -28,7 +28,7 @@ const HeaderUiCors = ({ setisopen, isOpen }) => {
             onClick={() => {
               setisopen(!isOpen);
             }}
-            className="  w-8 h-8  mr-5  bg-black/5 rounded-lg  p-2 cursor-pointer   ">
+            className="  w-8 h-8   bg-black/5 rounded-lg  p-2 cursor-pointer   ">
             <Image src={require("@/public/icons/menu.png")} alt={"Menu"} />
           </div>
         </div>
