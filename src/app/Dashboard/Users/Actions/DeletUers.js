@@ -15,6 +15,7 @@ export default async function DeletUers({ id }) {
     //   { new: true } // إرجاع الوثيقة بعد التحديث
     // );
     revalidatePath("/Dashboard/courses");
+    return resulte;
   } catch (error) {
     console.log(error);
   }

@@ -2,13 +2,21 @@
 import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 const MenuBar = ({
   isOpen,
   setisopen,
   isOpenNevauxBar,
   setisOpenNevauxBar,
 }) => {
+  // كان من الافضل استهدام getserversession() واحضار كل شئ جاهز من السيرفر
+  let [role, setrole] = useState();
   let { data } = useSession();
+
+  useEffect(() => {
+    setrole(data);
+  }, [data]);
+
   return (
     <>
       {/* BacGround Black When Open menu  */}
@@ -42,7 +50,7 @@ const MenuBar = ({
 
           <ul className="pt-4 ">
             {/* Dabsbord */}
-            {data?.user?.role === "admin" && (
+            {role?.user?.role === "admin" && (
               <li>
                 <Link
                   href="/Dashboard/statistique"

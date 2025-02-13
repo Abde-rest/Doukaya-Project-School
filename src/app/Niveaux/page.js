@@ -3,8 +3,8 @@ import BoxNevaux from "./Componet/BoxNevaux/BoxNevaux";
 import TopHedingThepage from "./Componet/TopHedingThepage";
 
 const page = async () => {
-  // let data = await getServerSession();
-  // console.log(data);
+  let data = await getServerSession();
+  console.log(data);
 
   return (
     <div>
