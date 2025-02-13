@@ -28,7 +28,7 @@ export default function RootLayout({ children }) {
       <head>
         {/* ربط ملف manifest.json الموجود في public */}
         <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-color" content="#317EFB" />
+        <meta name="theme-color" content="#FCFAEE " />
       </head>
       <body className={`bg-primary ${cairo.className}`}>
         <Analytics />
